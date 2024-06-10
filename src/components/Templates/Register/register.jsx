@@ -10,7 +10,8 @@ import {
   useRouteError,
   useSubmit,
 } from "react-router-dom";
-import { httpService } from "../../../../services/http-service";
+import { httpService } from "../../../services/http-service";
+
 const Register = () => {
   const {
     register,

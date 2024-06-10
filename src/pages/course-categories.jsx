@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { httpInterceptedService } from "../services/http-service";
-import Modal from "../components/modal";
+
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import Modal from "../components/Modules/modal";
 
 
 const CourseCategories = () => {
