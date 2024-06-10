@@ -3,8 +3,8 @@ import faFlag from "@assets/images/fa.png";
 import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { useAppContext } from "../contexts/app/app-context";
-import { useTranslation } from "react-i18next";
+import { useAppContext } from "../../contexts/app/app-context";
+
 const ChangeLanguage = () => {
   const [show, setShow] = useState(false);
   const ref = useRef();

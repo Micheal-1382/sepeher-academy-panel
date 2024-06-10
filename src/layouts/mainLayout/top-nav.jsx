@@ -1,5 +1,5 @@
-import ChangeLanguage from "../../components/change-language";
-import ChangeTheme from "../../components/change-theme";
+import ChangeLanguage from "../../components/Modules/change-language";
+import ChangeTheme from "../../components/Modules/change-theme";
 import { useAppContext } from "../../contexts/app/app-context";
 import { useNavigate } from "react-router";
 

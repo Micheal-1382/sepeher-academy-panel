@@ -1,4 +1,4 @@
-import { useAppContext } from "../contexts/app/app-context";
+import { useAppContext } from "../../contexts/app/app-context";
 
 const ChangeTheme = () => {
   const { theme, changeTheme } = useAppContext();

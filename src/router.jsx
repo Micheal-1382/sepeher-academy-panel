@@ -1,16 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import Login, { loginAction } from "./features/Identity/components/login/login";
-import Register from "./features/Identity/components/register/register";
 import IdentityLayout from "./layouts/identity-layout";
-import { registerAction } from "./features/Identity/components/register/register";
 import MainLayout from "./layouts/mainLayout/main-layout";
 import Courses from "./pages/courses";
 import CourseCategories from "./pages/course-categories";
-import CourseDetails, {
-  courseDetailsLoader,
-} from "./features/courses/components/course-details";
+
 import NotFound from "./pages/not-found";
 import UnhandledException from "./pages/unhandled-exception";
+import Login, { loginAction } from "./components/Templates/Login/login";
+import Register, {
+  registerAction,
+} from "./components/Templates/Register/register";
 
 const router = createBrowserRouter([
   {
@@ -24,8 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: "courses/:id",
-        element: <CourseDetails />,
-        loader: courseDetailsLoader,
+        element: <></>,
       },
       {
         path: "course-categories",
