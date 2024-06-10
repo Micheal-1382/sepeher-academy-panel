@@ -4,8 +4,7 @@ import { httpInterceptedService } from "@core/http-service";
 import Modal from "../components/modal";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import AddOrUpdateCategory from "../features/categories/components/add-or-update-category";
-import { useCategoryContext } from "../features/categories/category-context";
+
 
 const CourseCategories = () => {
   const [showAddCategory, setShowAddCategory] = useState(false);
@@ -13,8 +12,6 @@ const CourseCategories = () => {
   const [selectedCategory, setSelectedCategory] = useState();
   const navigate = useNavigate();
   const { t } = useTranslation();
-
-  const { category } = useCategoryContext();
 
   const handleDeleteCategory = async () => {
     setShowDeleteModal(false);
@@ -57,9 +54,6 @@ const CourseCategories = () => {
               <i className="fas fa-plus ms-2"></i>افزودن دسته جدید
             </button>
           </div>
-          {(showAddCategory || category) && (
-            <AddOrUpdateCategory setShowAddCategory={setShowAddCategory} />
-          )}
         </div>
       </div>
 
