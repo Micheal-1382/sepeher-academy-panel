@@ -1,64 +1,14 @@
-# NextJS and NextUI Dashboard Sample
-
-You can deploy here directly to vercel [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/chris-trapstar/nextui-dashboard)
-
-This is a sample for NextJS and NextUI. 
-
-[NextJS](https://nextjs.org/) 
-[NextUI](https://nextui.org/)
-
-You can see the demo here: https://nextui-dashboard.vercel.app/
-
-### Dark Mode
-![Dashboard Dark Mode](./public/dark.png)
-
-### Light Mode
-![Dashboard Light Mode](./public/light.png)
+# React + Vite React Admin Panel
 
 
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- Dark Mode Support
-- Full Responsive
-- Home Page with Charts
-- Accounts Page
-- More pages coming soon...
+  
+![Screenshot 2023-09-18 153525](https://github.com/sadeqmozaffari/react-admin-Panel/assets/90993723/01e42169-c9c8-4dcb-b7a6-8ca29f90b900)
 
-```
-├── components
-│   ├── accounts            # Accounts components
-│   ├── charts              # Charts components
-│   ├── breadcrumb          # component
-|   ├── home                # Home components
-|   ├── layout              # Layout components
-|   ├── navbar              # Navbar components
-|   ├── sidebar             # Sidebar components
-|   ├── table               # Table components
-|   ├── styles              # Some reusable components
-|   ├── icons               # Icons
-|   ├── hooks               #  Hooks
-├── pages                   # Documentation files 
-│   ├──  _app.tsx           # Entry point for the app
-│   ├──  index.tsx          # Home page
-│   ├── accounts.tsx        # Accounts Page
-│   ├── more...             # Soon
-└──
+![Screenshot 2023-09-18 153417](https://github.com/sadeqmozaffari/react-admin-Panel/assets/90993723/b1a000d3-f38a-4664-82b6-0c2b09b59a13)
+![Screenshot 2023-09-18 153623](https://github.com/sadeqmozaffari/react-admin-Panel/assets/90993723/c06e8f67-dd6d-49c6-a041-54f88660eeea)
+![Screenshot 2023-09-18 153559](https://github.com/sadeqmozaffari/react-admin-Panel/assets/90993723/f2996ea4-22c6-402b-a230-6fab062605a9)
+![Screenshot 2023-09-18 153640](https://github.com/sadeqmozaffari/react-admin-Panel/assets/90993723/87cee434-60af-4368-a284-d1ab34cb5afe)
 
-```
-## For Run
-
-Install dependencies
-
-    
-```bash
-npm install
-```
-
-Start the server
-
-    
-        
-```bash
-npm run dev
-```
-
-Now you can visit https://localhost:3000 in your browser.
