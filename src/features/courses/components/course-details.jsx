@@ -1,5 +1,5 @@
-import {  useLoaderData } from "react-router";
-import { httpInterceptedService } from "../../../core/http-service";
+import { useLoaderData } from "react-router";
+import { httpInterceptedService } from "../../../services/http-service";
 
 const CourseDetails = () => {
   const data = useLoaderData();
@@ -14,16 +14,15 @@ const CourseDetails = () => {
                 style={{ width: "30%" }}
                 src={data.coverImageUrl}
               />
-             
-                <div className="d-flex flex-column justify-content-center pe-4 text-center">
-                  <div className="badge bg-info my-2 align-self-center">
-                    {data.courseCategory}
-                  </div>
-                  <h4>{data.title}</h4>
-                  <p>{data.description}</p>
+
+              <div className="d-flex flex-column justify-content-center pe-4 text-center">
+                <div className="badge bg-info my-2 align-self-center">
+                  {data.courseCategory}
                 </div>
+                <h4>{data.title}</h4>
+                <p>{data.description}</p>
               </div>
-          
+            </div>
           </div>
         </div>
       </div>
