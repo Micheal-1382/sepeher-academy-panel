@@ -1,6 +1,5 @@
-import { Suspense, useState } from "react";
-import { Await, defer, useLoaderData, useNavigate } from "react-router";
-import CategoryList from "../features/categories/components/category-list";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 import { httpInterceptedService } from "@core/http-service";
 import Modal from "../components/modal";
 import { toast } from "react-toastify";
@@ -12,16 +11,10 @@ const CourseCategories = () => {
   const [showAddCategory, setShowAddCategory] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState();
-  const data = useLoaderData();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const {category} = useCategoryContext();
-
-  const deleteCategory = (categoryId) => {
-    setSelectedCategory(categoryId);
-    setShowDeleteModal(true);
-  };
+  const { category } = useCategoryContext();
 
   const handleDeleteCategory = async () => {
     setShowDeleteModal(false);
@@ -64,21 +57,9 @@ const CourseCategories = () => {
               <i className="fas fa-plus ms-2"></i>افزودن دسته جدید
             </button>
           </div>
-          {
-            (showAddCategory || category)  && <AddOrUpdateCategory setShowAddCategory={setShowAddCategory}/>
-          }
-          <Suspense
-            fallback={<p className="text-info">در حال دریافت اطلاعات ...</p>}
-          >
-            <Await resolve={data.categories}>
-              {(loadedCategories) => (
-                <CategoryList
-                  deleteCategory={deleteCategory}
-                  categories={loadedCategories}
-                />
-              )}
-            </Await>
-          </Suspense>
+          {(showAddCategory || category) && (
+            <AddOrUpdateCategory setShowAddCategory={setShowAddCategory} />
+          )}
         </div>
       </div>
 
@@ -106,22 +87,5 @@ const CourseCategories = () => {
     </>
   );
 };
-
-const loadCategories = async (request) => {
-  const page = new URL(request.url).searchParams.get("page") || 1;
-  const pageSize = import.meta.env.VITE_PAGE_SIZE;
-  let url = "/CourseCategory/sieve";
-
-  url += `?page=${page}&pageSize=${pageSize}`;
-
-  const response = await httpInterceptedService.get(url);
-  return response.data;
-};
-
-export async function categoriesLoader({ request }) {
-  return defer({
-    categories: loadCategories(request),
-  });
-}
 
 export default CourseCategories;
