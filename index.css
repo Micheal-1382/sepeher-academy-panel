@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: kalamehBold;
+  src: url(./fonts/KalamehBold.ttf);
+}
+@font-face {
+  font-family: kalamehBlack;
+  src: url(./fonts/kalamehBlack.ttf);
+}
+@font-face {
+  font-family: vazir;
+  src: url(./fonts/vazir.ttf);
+}
+@font-face {
+  font-family: peyda;
+  src: url(./fonts/PeydaWeb.ttf);
+}
