@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Sidebar from "./sidebar";
 import TopNav from "./top-nav";
+import Footer from "../../components/Modules/Footer/Footer";
 
 const MainLayout = () => {
   const navigate = useNavigate();
@@ -21,17 +22,7 @@ const MainLayout = () => {
             <Outlet />
           </div>
         </main>
-        <footer className="footer">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12">
-                <p className="mb-0">
-                طراحی شده با ♥️ توسط تیم Sleepy Guys
-                </p>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   );
