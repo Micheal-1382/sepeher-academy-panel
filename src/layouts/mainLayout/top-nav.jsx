@@ -2,6 +2,10 @@ import ChangeLanguage from "../../components/Modules/change-language";
 import ChangeTheme from "../../components/Modules/change-theme";
 import { useAppContext } from "../../contexts/app/app-context";
 import { useNavigate } from "react-router";
+import menubarIcon from "../../assets/icons/outlined/menu-bar.svg";
+import { Button, Image } from "@nextui-org/react";
+import MainButton from "../../components/Modules/Button/MainButton";
+import AccountPopover from "../../components/Modules/AccountPopover/AccountPopover";
 
 const TopNav = () => {
   const { language, toggleSidebar } = useAppContext();
@@ -13,21 +17,17 @@ const TopNav = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand navbar-light navbar-bg">
-      <a className="sidebar-toggle" onClick={toggleSidebar}>
-        <i className="hamburger align-self-center"></i>
-      </a>
-      <div className="d-flex align-items-center gap-3">
+    <nav className="navbar  w-full">
+      <Image
+        src={menubarIcon}
+        alt=""
+        className="sidebar-toggle"
+        onClick={toggleSidebar}
+      />
+      <div className="flex items-center gap-2">
         <ChangeLanguage />
         <ChangeTheme />
-      </div>
-      <div className={`${language === "fa" ? "me-auto" : "ms-auto"}`}>
-        <button
-          className="btn ms-2 btn-outline-danger fw-bolder"
-          onClick={logout}
-        >
-          خارج شوید
-        </button>
+        <AccountPopover />
       </div>
     </nav>
   );
