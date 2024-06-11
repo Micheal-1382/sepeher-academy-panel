@@ -7,7 +7,7 @@ import coursesIcon from "../../assets/icons/theme/courses.svg";
 const Sidebar = () => {
   const { showSidebar } = useAppContext();
   return (
-    <nav className={`sidebar ${!showSidebar ? "collapsed" : ""}`}>
+    <nav className={`sidebar ${!showSidebar ? "collapsed" : ""} bg-white dark:!bg-dark border-l-1 border-[#bfbfbf] dark:border-[#848484]`}>
       <div>
         <Link className="justify-center items-center w-full flex flex-col pt-2">
           <Image src={logo} alt="" width={80} />
@@ -15,72 +15,94 @@ const Sidebar = () => {
         </Link>
 
         <ul className="pe-0 font-peyda">
-          <li className="sidebar-header !text-xl">مدیریت دوره ها</li>
+          <li className="sidebar-header !text-xl !text-lightTitle dark:!text-darkTitle mb-3">مدیریت دوره ها</li>
           <li>
             <NavLink
-              className={"sidebar-link !flex gap-1 items-center"}
+              className={"sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"}
               to={"/"}
             >
               <Image alt="" src={coursesIcon} />
-              <span>همه دوره ها</span>
+              <span className="!text-lightBody dark:!text-darkBody">همه دوره ها</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              className={"sidebar-link !flex gap-1 items-center"}
+              className={"sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"}
               to={"/"}
             >
               <Image alt="" src={coursesIcon} />
-              <span>همه دوره ها</span>
+              <span className="!text-lightBody dark:!text-darkBody">همه دوره ها</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              className={"sidebar-link !flex gap-1 items-center"}
+              className={"sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"}
               to={"/"}
             >
               <Image alt="" src={coursesIcon} />
-              <span>همه دوره ها</span>
+              <span className="!text-lightBody dark:!text-darkBody">همه دوره ها</span>
             </NavLink>
           </li>
-          <li className="sidebar-header !text-xl">مدیریت کاربران</li>
+
+          <li className="sidebar-header !text-xl !text-lightTitle dark:!text-darkTitle mb-3">مدیریت دوره ها</li>
           <li>
             <NavLink
-              className={"sidebar-link !flex gap-1 items-center"}
+              className={"sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"}
               to={"/"}
             >
               <Image alt="" src={coursesIcon} />
-              <span>همه دوره ها</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={"sidebar-link !flex gap-1 items-center"}
-              to={"/"}
-            >
-              <Image alt="" src={coursesIcon} />
-              <span>همه دوره ها</span>
-            </NavLink>
-          </li>
-          <li className="sidebar-header !text-xl">مدیریت اخبار</li>
-          <li>
-            <NavLink
-              className={"sidebar-link !flex gap-1 items-center"}
-              to={"/"}
-            >
-              <Image alt="" src={coursesIcon} />
-              <span>همه دوره ها</span>
+              <span className="!text-lightBody dark:!text-darkBody">همه دوره ها</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              className={"sidebar-link !flex gap-1 items-center"}
+              className={"sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"}
               to={"/"}
             >
               <Image alt="" src={coursesIcon} />
-              <span>همه دوره ها</span>
+              <span className="!text-lightBody dark:!text-darkBody">همه دوره ها</span>
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              className={"sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"}
+              to={"/"}
+            >
+              <Image alt="" src={coursesIcon} />
+              <span className="!text-lightBody dark:!text-darkBody">همه دوره ها</span>
+            </NavLink>
+          </li>
+          <li className="sidebar-header !text-xl !text-lightTitle dark:!text-darkTitle mb-3">مدیریت دوره ها</li>
+          <li>
+            <NavLink
+              className={"sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"}
+              to={"/"}
+            >
+              <Image alt="" src={coursesIcon} />
+              <span className="!text-lightBody dark:!text-darkBody">همه دوره ها</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={"sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"}
+              to={"/"}
+            >
+              <Image alt="" src={coursesIcon} />
+              <span className="!text-lightBody dark:!text-darkBody">همه دوره ها</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={"sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"}
+              to={"/"}
+            >
+              <Image alt="" src={coursesIcon} />
+              <span className="!text-lightBody dark:!text-darkBody">همه دوره ها</span>
+            </NavLink>
+          </li>
+          
+         
+         
         </ul>
       </div>
     </nav>

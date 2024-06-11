@@ -16,12 +16,12 @@ const MainLayout = () => {
       <Sidebar />
       <div className="main">
         <TopNav />
-        <main className="content">
+        <main className="content dark:bg-dark-lighter">
           <div className="container-fluid p-0">
             <Outlet />
           </div>
         </main>
-        <footer className="footer">
+        <footer className="footer dark:bg-dark">
           <div className="container-fluid">
             <div className="row">
               <div className="col-12">
