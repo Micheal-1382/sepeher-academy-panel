@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { httpInterceptedService } from "../services/http-service";
 
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import Modal from "../components/Modules/modal";
-
 
 const CourseCategories = () => {
   const [showAddCategory, setShowAddCategory] = useState(false);
@@ -14,33 +12,33 @@ const CourseCategories = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const handleDeleteCategory = async () => {
-    setShowDeleteModal(false);
-    const response = httpInterceptedService.delete(
-      `/CourseCategory/${selectedCategory}`
-    );
-    toast.promise(
-      response,
-      {
-        pending: "در حال حذف ...",
-        success: {
-          render() {
-            const url = new URL(window.location.href);
-            navigate(url.pathname + url.search);
-            return "عملیات با موفقیت انجام شد";
-          },
-        },
-        error: {
-          render({ data }) {
-            return t("categoryList." + data.response.data.code);
-          },
-        },
-      },
-      {
-        position: toast.POSITION.BOTTOM_LEFT,
-      }
-    );
-  };
+  // const handleDeleteCategory = async () => {
+  //   setShowDeleteModal(false);
+  //   const response = httpInterceptedService.delete(
+  //     `/CourseCategory/${selectedCategory}`
+  //   );
+  //   toast.promise(
+  //     response,
+  //     {
+  //       pending: "در حال حذف ...",
+  //       success: {
+  //         render() {
+  //           const url = new URL(window.location.href);
+  //           navigate(url.pathname + url.search);
+  //           return "عملیات با موفقیت انجام شد";
+  //         },
+  //       },
+  //       error: {
+  //         render({ data }) {
+  //           return t("categoryList." + data.response.data.code);
+  //         },
+  //       },
+  //     },
+  //     {
+  //       position: toast.POSITION.BOTTOM_LEFT,
+  //     }
+  //   );
+  // };
 
   return (
     <>

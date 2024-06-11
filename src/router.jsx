@@ -3,19 +3,17 @@ import IdentityLayout from "./layouts/identity-layout";
 import MainLayout from "./layouts/mainLayout/main-layout";
 import Courses from "./pages/courses";
 import CourseCategories from "./pages/course-categories";
-
 import NotFound from "./pages/not-found";
 import UnhandledException from "./pages/unhandled-exception";
-import Login, { loginAction } from "./components/Templates/Login/login";
 import Register, {
-  registerAction,
 } from "./components/Templates/Register/register";
+import LoginPage from "./pages/login";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement: <UnhandledException />,
+    errorElement: <UnhandledException />,
     children: [
       {
         index: true,
@@ -36,14 +34,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <Login />,
-        action: loginAction,
-        errorElement: <Login />,
+        element: <LoginPage />,
+        errorElement: <LoginPage />,
       },
       {
         path: "register",
         element: <Register />,
-        action: registerAction,
         errorElement: <Register />,
       },
     ],
