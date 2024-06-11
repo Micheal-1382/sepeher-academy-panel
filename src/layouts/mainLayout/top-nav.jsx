@@ -1,5 +1,6 @@
 import ChangeLanguage from "../../components/Modules/change-language";
 import ChangeTheme from "../../components/Modules/change-theme";
+import ThemeSwitch from "../../components/Modules/theme-switch";
 import { useAppContext } from "../../contexts/app/app-context";
 import { useNavigate } from "react-router";
 import menubarIcon from "../../assets/icons/outlined/menu-bar.svg";
