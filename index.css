@@ -18,3 +18,8 @@
   font-family: peyda;
   src: url(./fonts/PeydaWeb.ttf);
 }
+
+ul {
+  padding: 0 !important;
+  margin: 0 !important;
+}

@@ -12,13 +12,11 @@
   "dependencies": {
     "@nextui-org/react": "^2.4.1",
     "@tanstack/react-query": "^5.40.1",
-    "@tanstack/react-table": "^8.17.3",
     "axios": "^1.5.0",
     "framer-motion": "^11.2.10",
     "i18next": "^23.5.1",
     "i18next-http-backend": "^2.2.2",
     "js-cookie": "^3.0.5",
-    "lodash": "^4.17.21",
     "next-themes": "^0.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
