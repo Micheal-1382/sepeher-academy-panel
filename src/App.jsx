@@ -24,7 +24,10 @@ const App = () => {
   return (
     <>
       <RouterProvider router={router} />
-      <ToastContainer rtl />
+      <ToastContainer
+        rtl
+        bodyClassName={() => "font-peyda flex items-center"}
+      />
     </>
   );
 };

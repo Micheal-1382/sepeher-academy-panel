@@ -6,12 +6,17 @@ import NotFound from "./pages/not-found";
 import UnhandledException from "./pages/unhandled-exception";
 import LoginPage from "./pages/login";
 import CoursesPage from "./pages/courses";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
-    errorElement: <UnhandledException />,
+    element: (
+      <PrivateRoute>
+        <MainLayout />
+      </PrivateRoute>
+    ),
+    // errorElement: <UnhandledException />,
     children: [
       {
         index: true,
