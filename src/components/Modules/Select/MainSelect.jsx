@@ -49,8 +49,8 @@ export default function MainSelect({
       onChange={handleSelectionChange}
       className={className}
     >
-      {data.map((animal) => (
-        <SelectItem key={animal.query}>{animal.name}</SelectItem>
+      {data.map((item) => (
+        <SelectItem key={item.query}>{item.name}</SelectItem>
       ))}
     </Select>
   );
