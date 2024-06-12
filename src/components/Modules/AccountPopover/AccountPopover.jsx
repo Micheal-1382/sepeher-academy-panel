@@ -13,11 +13,12 @@ import logout from "../../../assets/icons/theme/logout.svg";
 import userIcon from "../../../assets/icons/theme/user.svg";
 import UserCard from "../UserCard/UserCard";
 import MainButton from "../Button/MainButton";
+import { revokeTokenAndRoles } from "../../../utils/revokeToken";
 
 export default function AccountPopover() {
   const logoutUserHandler = () => {
-    revokeToken();
-    // router.reload();
+    revokeTokenAndRoles();
+    window.location.reload();
   };
   return (
     <Popover offset={15} placement="bottom-start" backdrop={"blur"}>

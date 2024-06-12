@@ -3,7 +3,6 @@ import PrimaryInput from "../../Modules/Input/PrimaryInput";
 import { combinedEmailAndPhoneRegex } from "../../../utils/combinedEmailAndPhoneRegex";
 import { Controller, useForm } from "react-hook-form";
 import { Checkbox } from "@nextui-org/react";
-import { Link } from "react-router-dom";
 import MainButton from "../../Modules/Button/MainButton";
 import { useLoginUserApi } from "../../../hooks/api/useAuthApi";
 
@@ -56,9 +55,10 @@ export default function LoginForm() {
         isInvalid={Boolean(errors.password)}
         errorMessage={errors.password?.message}
       />
-      <div className="flex justify-between items-center mt-1">
+      <div className="mt-1">
         <Controller
           control={control}
+          defaultValue={false}
           name="rememberMe"
           render={({ field: { onChange, value } }) => (
             <Checkbox
@@ -72,12 +72,6 @@ export default function LoginForm() {
             </Checkbox>
           )}
         />
-        <Link
-          to="resetPassword"
-          className="font-peyda text-lightBody dark:text-darkBody"
-        >
-          رمزت رو فراموش کردی؟
-        </Link>
       </div>
       <MainButton
         content={"ورود"}
