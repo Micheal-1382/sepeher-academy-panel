@@ -1,25 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
 import IdentityLayout from "./layouts/identity-layout";
 import MainLayout from "./layouts/mainLayout/main-layout";
-import Courses from "./pages/courses";
 import CourseCategories from "./pages/course-categories";
-
 import NotFound from "./pages/not-found";
 import UnhandledException from "./pages/unhandled-exception";
-import Login, { loginAction } from "./components/Templates/Login/login";
-import Register, {
-  registerAction,
-} from "./components/Templates/Register/register";
+import LoginPage from "./pages/login";
+import CoursesPage from "./pages/courses";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement: <UnhandledException />,
+    errorElement: <UnhandledException />,
     children: [
       {
         index: true,
-        element: <Courses />,
+        element: <CoursesPage />,
       },
       {
         path: "courses/:id",
@@ -36,15 +32,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <Login />,
-        action: loginAction,
-        errorElement: <Login />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-        action: registerAction,
-        errorElement: <Register />,
+        element: <LoginPage />,
+        errorElement: <LoginPage />,
       },
     ],
   },
