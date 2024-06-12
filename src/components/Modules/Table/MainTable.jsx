@@ -31,7 +31,9 @@ export default function MainTable({
   const queryParams = getQueryParams(search);
 
   const pages = useMemo(() => {
-    return totalCount ? Math.ceil(totalCount / 5) : 0;
+    return totalCount
+      ? Math.ceil(totalCount / queryParams?.RowsOfPage || 5)
+      : 0;
   }, [totalCount]);
 
   const changePageHandler = (newPage) => {
