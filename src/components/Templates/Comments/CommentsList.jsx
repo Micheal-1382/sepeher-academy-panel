@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import MainTable from "../../Modules/Table/MainTable";
-import { useCourseListApi } from "../../../hooks/api/useCoursesApi";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
 import { Image } from "@nextui-org/react";
 import eyeIcon from "../../../assets/icons/outlined/eye.svg";
@@ -14,13 +13,14 @@ import commentSortingColItems from "../../../constants/commentSortingColItems";
 import { useCommentListApi } from "../../../hooks/api/useComment";
 
 const columns = [
-  { name: "ثبت کننده کامنب", uid: "userFullName" },
+  { name: "نام کاربر", uid: "userFullName" },
   { name: "سرتیتر کامنت", uid: "commentTitle" },
   { name: "نام دوره", uid: "courseTitle" },
   { name: "توضیحات", uid: "describe" },
-  { name: "تعداد ریپلای", uid: "replayCount" },
+  { name: "تعداد ریپلای", uid: "replyCount" },
   { name: "تعداد لایک", uid: "replyCount" },
   { name: "تعداد دیس لایک", uid: "dislikeCount" },
+  { name: "عملیات", uid: "actions" },
 ];
 
 export default function CommentsList() {
@@ -28,10 +28,8 @@ export default function CommentsList() {
   const { search } = location;
 
   const queryParams = getQueryParams(search);
-  console.log(queryParams);
 
   const { data, isLoading } = useCommentListApi(queryParams);
-  console.log(data);
 
   const renderCell = useCallback((comment, columnKey) => {
     const cellValue = comment[columnKey];

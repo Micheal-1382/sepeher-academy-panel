@@ -36,8 +36,6 @@ export default function NewsList() {
 
   const { data, isLoading } = useAdminNewsFilterListApi(queryParams);
 
-  console.log(isLoading);
-
   const renderCell = useCallback((course, columnKey) => {
     const cellValue = course[columnKey];
 

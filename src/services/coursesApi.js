@@ -28,3 +28,11 @@ export const deleteCourseGroupApi = (id) => {
     },
   });
 };
+
+export const updateCourseGroupApi = (payload) => {
+  return httpService.put(baseUrl + `CourseGroup`, payload, {
+    headers: {
+      useMultipartForm: true,
+    },
+  });
+};

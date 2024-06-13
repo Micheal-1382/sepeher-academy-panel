@@ -22,7 +22,6 @@ export default function MainTable({
   isLoading,
   totalCount,
 }) {
-  console.log(data)
   const [currentPage, setCurrentPage] = useState(1);
 
   const navigate = useNavigate();
