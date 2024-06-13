@@ -7,47 +7,46 @@ import { Image } from "@nextui-org/react";
 import eyeIcon from "../../../assets/icons/outlined/eye.svg";
 import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
-import HorizontalFilterBox from "./CommentsFilterBox";
+import HorizontalFilterBox from "./UsersFilterBox";
 import { sortTypeItems } from "../../../constants/sortTypeItems";
 import commentSortingColItems from "../../../constants/commentSortingColItems";
-import { useCommentListApi } from "../../../hooks/api/useCommentApi";
+import { useUserListApi } from "../../../hooks/api/useUserApi";
+// import { useUserApi } from "../../../hooks/api/useUserApi";
 
 const columns = [
-  { name: "نام کاربر", uid: "userFullName" },
-  { name: "سرتیتر کامنت", uid: "commentTitle" },
-  { name: "نام دوره", uid: "courseTitle" },
-  { name: "توضیحات", uid: "describe" },
-  { name: "تعداد ریپلای", uid: "replyCount" },
-  { name: "تعداد لایک", uid: "replyCount" },
-  { name: "تعداد دیس لایک", uid: "dislikeCount" },
-  { name: "عملیات", uid: "actions" },
+  { name: "نام", uid: "fname" },
+  { name: "نام خانوادگی", uid: "lname" },
+  { name: "ایمیل", uid: "gmail" },
+  { name: "شماره همراه", uid: "phoneNumber" },
+  { name: "پروفایل تکمیل درصد", uid: "profileCompletionPercentage" },
+  { name: "دانش آموز", uid: "isStudent" },
 ];
 
-export default function CommentsList() {
+export default function UsersList() {
   const location = useLocation();
   const { search } = location;
 
   const queryParams = getQueryParams(search);
+  console.log(queryParams);
 
-  const { data, isLoading } = useCommentListApi(queryParams);
+  const { data, isLoading } = useUserListApi(queryParams);
+  console.log(data);
 
   const renderCell = useCallback((comment, columnKey) => {
     const cellValue = comment[columnKey];
 
     switch (columnKey) {
-      case "courseTitle":
+      case "gmail":
         return <p className="font-peyda">{cellValue}</p>;
-      case "commentTitle":
+      case "phoneNumber":
         return <p className="font-peyda">{cellValue}</p>;
-      case "describe":
+      case "profileCompletionPercentage":
         return <p className="font-peyda">{cellValue}</p>;
-      case "likeCount":
+      case "isStudent":
+        return <p className="font-peyda">{cellValue === true ? "هست" : "نیست"}</p>;
+      case "fname":
         return <p className="font-peyda">{cellValue}</p>;
-      case "dislikeCount":
-        return <p className="font-peyda">{cellValue}</p>;
-      case "userFullName":
-        return <p className="font-peyda">{cellValue}</p>;
-      case "replyCount":
+      case "lname":
         return <p className="font-peyda">{cellValue}</p>;
       case "actions":
         return (
@@ -73,9 +72,9 @@ export default function CommentsList() {
         placeholder={"جستجو"}
         sortTypeArray={sortTypeItems}
         sortingColArray={commentSortingColItems}
-      />
+      /> 
       <MainTable
-        data={data?.comments ?? []}
+        data={data?.listUser ?? []}
         columns={columns}
         renderCell={renderCell}
         isLoading={isLoading}
