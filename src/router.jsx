@@ -6,6 +6,7 @@ import LoginPage from "./pages/login";
 import CoursesPage from "./pages/courses";
 import PrivateRoute from "./PrivateRoute";
 import NewsPage from "./pages/news";
+import CommentPage from "./pages/news";
 import MainLayout from "./layouts/mainLayout";
 import CoursesCategoriesPage from "./pages/courses-categories";
 import AddCourseCategoriesPage from "./pages/add-course-categories";
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "courses/:id",
         element: <></>,
+      },
+      {
+        path: "comments",
+        element: <CommentPage />,
       },
       {
         path: "news",
