@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <MainLayout />
-      </PrivateRoute>
+     </PrivateRoute>
     ),
     // errorElement: <UnhandledException />,
     children: [

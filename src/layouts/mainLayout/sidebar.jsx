@@ -10,7 +10,7 @@ const Sidebar = () => {
     <nav
       className={`sidebar ${
         !showSidebar ? "collapsed" : ""
-      } bg-white dark:!bg-dark border-l-1 border-[#bfbfbf] dark:border-[#848484]`}
+      } bg-white dark:bg-dark border-l-1 border-[#bfbfbf] dark:border-[#848484]`}
     >
       <div>
         <div className="flex flex-col items-center gap-2 pt-4">
@@ -43,27 +43,11 @@ const Sidebar = () => {
             >
               <Image alt="" src={coursesIcon} />
               <span className="!text-lightBody dark:!text-darkBody">
-                همه دوره ها
-              </span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={
-                "sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"
-              }
-              to={"/"}
-            >
-              <Image alt="" src={coursesIcon} />
-              <span className="!text-lightBody dark:!text-darkBody">
-                همه دوره ها
+               همه اخبار
               </span>
             </NavLink>
           </li>
 
-          <li className="sidebar-header !text-xl !text-lightTitle dark:!text-darkTitle mb-3">
-            مدیریت دوره ها
-          </li>
           <li>
             <NavLink
               className={
@@ -73,78 +57,13 @@ const Sidebar = () => {
             >
               <Image alt="" src={coursesIcon} />
               <span className="!text-lightBody dark:!text-darkBody">
-                همه دوره ها
+                همه نظرات
               </span>
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className={
-                "sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"
-              }
-              to={"/"}
-            >
-              <Image alt="" src={coursesIcon} />
-              <span className="!text-lightBody dark:!text-darkBody">
-                همه دوره ها
-              </span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={
-                "sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"
-              }
-              to={"/"}
-            >
-              <Image alt="" src={coursesIcon} />
-              <span className="!text-lightBody dark:!text-darkBody">
-                همه دوره ها
-              </span>
-            </NavLink>
-          </li>
-          <li className="sidebar-header !text-xl !text-lightTitle dark:!text-darkTitle mb-3">
-            مدیریت دوره ها
-          </li>
-          <li>
-            <NavLink
-              className={
-                "sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"
-              }
-              to={"/"}
-            >
-              <Image alt="" src={coursesIcon} />
-              <span className="!text-lightBody dark:!text-darkBody">
-                همه دوره ها
-              </span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={
-                "sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"
-              }
-              to={"/"}
-            >
-              <Image alt="" src={coursesIcon} />
-              <span className="!text-lightBody dark:!text-darkBody">
-                همه دوره ها
-              </span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={
-                "sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"
-              }
-              to={"/"}
-            >
-              <Image alt="" src={coursesIcon} />
-              <span className="!text-lightBody dark:!text-darkBody">
-                همه دوره ها
-              </span>
-            </NavLink>
-          </li>
+         
+
+          
         </ul>
       </div>
     </nav>

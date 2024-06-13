@@ -1,4 +1,3 @@
-import ChangeLanguage from "../../components/Modules/change-language";
 import ChangeTheme from "../../components/Modules/change-theme";
 import { useAppContext } from "../../contexts/app/app-context";
 import menubarIcon from "../../assets/icons/outlined/menu-bar.svg";
@@ -16,7 +15,6 @@ const TopNav = () => {
         onClick={toggleSidebar}
       />
       <div className="flex items-center gap-2">
-        <ChangeLanguage />
         <ChangeTheme />
         <AccountPopover />
       </div>
