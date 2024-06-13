@@ -56,6 +56,17 @@ const Sidebar = () => {
           <li>
             <Link
               className={"sidebar-link !flex gap-1 items-center mb-1"}
+              to={"news"}
+            >
+              <Image alt="" src={coursesIcon} />
+              <span className="!text-lightBody dark:!text-darkBody">
+                همه اخبار
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={"sidebar-link !flex gap-1 items-center mb-1"}
               to={"comments"}
             >
               <Image alt="" src={coursesIcon} />
