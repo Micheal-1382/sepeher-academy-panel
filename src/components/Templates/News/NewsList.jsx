@@ -54,11 +54,9 @@ export default function NewsList() {
         return <p className="font-peyda">{cellValue}</p>;
       case "isActive":
         return (
-          <p className="font-peyda">
-            <Chip color={statusColor[cellValue]} className="text-btnText">
-              {cellValue ? "فعال" : "غیرفعال"}
-            </Chip>
-          </p>
+          <Chip color={statusColor[cellValue]} className="text-btnText">
+            {cellValue ? "فعال" : "غیرفعال"}
+          </Chip>
         );
       case "actions":
         return (
