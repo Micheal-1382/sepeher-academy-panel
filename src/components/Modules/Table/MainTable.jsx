@@ -59,6 +59,7 @@ export default function MainTable({
             <div className="flex justify-between gap-2 items-center">
               <Pagination
                 showControls
+                isCompact
                 color="primary"
                 page={currentPage}
                 total={pages}

@@ -43,7 +43,7 @@ export default function MainSelect({
       classNames={{
         label: ["font-peyda mr-2"],
         popoverContent: ["font-peyda !bg-mainBodyBg dark:!bg-dark"],
-        value: ["font-peyda p-0"],
+        value: ["font-peyda p-0 !text-right mr-8"],
         trigger: ["!bg-mainBodyBg dark:!bg-dark"],
       }}
       onChange={handleSelectionChange}

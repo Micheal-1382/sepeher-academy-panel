@@ -1,6 +1,6 @@
 import logo from "@assets/images/logo.svg";
 import { useAppContext } from "../../contexts/app/app-context";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Image } from "@nextui-org/react";
 import coursesIcon from "../../assets/icons/theme/courses.svg";
 
@@ -22,48 +22,51 @@ const Sidebar = () => {
             مدیریت دوره ها
           </li>
           <li>
-            <NavLink
-              className={
-                "sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"
-              }
+            <Link
+              className={"sidebar-link !flex gap-1 items-center mb-1"}
               to={"/"}
             >
               <Image alt="" src={coursesIcon} />
               <span className="!text-lightBody dark:!text-darkBody">
                 همه دوره ها
               </span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={
-                "sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"
-              }
-              to={"/"}
+            </Link>
+            <Link
+              className={"sidebar-link !flex gap-1 items-center mb-1"}
+              to={"course-categories"}
             >
               <Image alt="" src={coursesIcon} />
               <span className="!text-lightBody dark:!text-darkBody">
-               همه اخبار
+                دسته بندی دوره ها
               </span>
-            </NavLink>
+            </Link>
+          </li>
+          <li className="sidebar-header !text-xl !text-lightTitle dark:!text-darkTitle mb-3">
+            مدیریت اخبار
+          </li>
+          <li>
+            <Link
+              className={"sidebar-link !flex gap-1 items-center mb-1"}
+              to={"news"}
+            >
+              <Image alt="" src={coursesIcon} />
+              <span className="!text-lightBody dark:!text-darkBody">
+                همه اخبار
+              </span>
+            </Link>
           </li>
 
           <li>
-            <NavLink
-              className={
-                "sidebar-link !flex gap-1 items-center !bg-[#ededed] dark:!bg-dark-lighter mb-1"
-              }
+            <Link
+              className={"sidebar-link !flex gap-1 items-center mb-1"}
               to={"/"}
             >
               <Image alt="" src={coursesIcon} />
               <span className="!text-lightBody dark:!text-darkBody">
                 همه نظرات
               </span>
-            </NavLink>
+            </Link>
           </li>
-         
-
-          
         </ul>
       </div>
     </nav>

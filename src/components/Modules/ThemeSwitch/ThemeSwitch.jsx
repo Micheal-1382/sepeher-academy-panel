@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useSwitch, VisuallyHidden, SwitchProps, Image } from "@nextui-org/react";
+import { Image, useSwitch, VisuallyHidden } from "@nextui-org/react";
 import { useTheme } from "next-themes";
-import moonIcon from "../../assets/icons/theme/moon.svg";
-import sunIcon from "../../assets/icons/theme/sun.svg";
+import moonIcon from "../../../assets/icons/theme/moon.svg";
+import sunIcon from "../../../assets/icons/theme/sun.svg";
 import Cookies from "js-cookie";
 
-const ThemeSwitch = (props: SwitchProps) => {
+const ThemeSwitch = (props) => {
   const { Component, getBaseProps, getInputProps } = useSwitch(props);
 
   const { theme, setTheme } = useTheme();
 
   const [isLightMode, setIsLightMode] = useState(false);
 
-  const changeThemeHandler = (): void => {
+  const changeThemeHandler = () => {
     if (Object.is(theme, "light")) {
       setTheme("dark");
       Cookies.set("theme", "dark");
@@ -46,23 +46,23 @@ const ThemeSwitch = (props: SwitchProps) => {
         </VisuallyHidden>
         <div
           onClick={changeThemeHandler}
-          className="flex items-center justify-center w-8 h-8 rounded-full !bg-primary !dark:bg-primary-darker"
+          className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full !bg-primary dark:bg-primary-darker"
         >
           {!isLightMode ? (
             <Image
-              className="mt-[3px] ml-[1px] "
+              className="scale-110 mt-[3px] ml-[1px] "
               src={sunIcon}
               alt=""
-              width={35}
-              height={15}
+              width={45}
+              height={22}
             />
           ) : (
             <Image
               className="scale-[55%]"
               src={moonIcon}
               alt=""
-              width={35}
-              height={15}
+              width={45}
+              height={22}
             />
           )}
         </div>

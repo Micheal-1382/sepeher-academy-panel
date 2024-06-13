@@ -16,7 +16,7 @@ export default function UserCard({ title, description, image, size }) {
         />
       </div>
       <div>
-        <p className="text-2xl text-primary dark:text-primary-lighter mb-0.1 font-kalamehBlack">
+        <p className="text-2xl !text-primary dark:text-primary-lighter mb-0.1 font-kalamehBlack">
           {title}
         </p>
         <p className="text-xs text-lightBody dark:text-darkBody">
