@@ -1,7 +1,10 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
-import { useCourseGroupApi } from "../../../hooks/api/useCoursesApi";
+import {
+  useCourseGroupApi,
+  useDeleteCourseGroupApi,
+} from "../../../hooks/api/useCoursesApi";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
 import { Image } from "@nextui-org/react";
 import HorizontalFilterBox from "../Courses/CoursesFilterBox";
@@ -11,6 +14,13 @@ import courseSortingColItems from "../../../constants/courseSortingColItems";
 import eyeIcon from "../../../assets/icons/outlined/eye.svg";
 import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
+import { useModal } from "../../../hooks/useModal";
+import MainModal from "../../Modules/Modal/MainModal";
+import {
+  Body,
+  Footer,
+  Header,
+} from "../../Modules/Modal/Content/DeleteCourseCategoryContent";
 
 const columns = [
   { name: "نام دوره", uid: "courseName" },
@@ -27,7 +37,16 @@ export default function CourseCategoriesList() {
 
   const queryParams = getQueryParams(search);
 
+  const { isOpen, triggerModal } = useModal();
+
   const { data, isLoading } = useCourseGroupApi(queryParams);
+
+  const {
+    mutate: deleteCourseCategoryMutate,
+    isPending: deleteCourseCategoryPending,
+  } = useDeleteCourseGroupApi(triggerModal);
+
+  const selectedCourseCategoryId = useRef();
 
   const renderCell = useCallback((course, columnKey) => {
     const cellValue = course[columnKey];
@@ -53,7 +72,15 @@ export default function CourseCategoriesList() {
               <Image alt="" src={editIcon} width={20} />
             </MainTooltip>
             <MainTooltip color="danger" content="حذف">
-              <Image alt="" src={trashIcon} width={20} />
+              <Image
+                alt=""
+                src={trashIcon}
+                width={20}
+                onClick={() => {
+                  selectedCourseCategoryId.current = course.groupId;
+                  triggerModal(true);
+                }}
+              />
             </MainTooltip>
           </div>
         );
@@ -74,6 +101,20 @@ export default function CourseCategoriesList() {
         renderCell={renderCell}
         isLoading={isLoading}
         totalCount={data?.totalCount ?? 0}
+      />
+      <MainModal
+        isOpen={isOpen}
+        header={<Header />}
+        body={<Body />}
+        footer={
+          <Footer
+            triggerModal={triggerModal}
+            action={() =>
+              deleteCourseCategoryMutate(selectedCourseCategoryId.current)
+            }
+            actionLoading={deleteCourseCategoryPending}
+          />
+        }
       />
     </div>
   );

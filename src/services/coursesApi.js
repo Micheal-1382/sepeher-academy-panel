@@ -17,3 +17,14 @@ export const addCourseGroupApi = (payload) => {
     },
   });
 };
+
+export const deleteCourseGroupApi = (id) => {
+  return httpService.delete(baseUrl + `CourseGroup`, {
+    headers: {
+      useMultipartForm: true,
+    },
+    data: {
+      id,
+    },
+  });
+};
