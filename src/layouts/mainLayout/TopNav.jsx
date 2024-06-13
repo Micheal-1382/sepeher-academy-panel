@@ -1,8 +1,8 @@
-import ChangeTheme from "../../components/Modules/change-theme";
 import { useAppContext } from "../../contexts/app/app-context";
 import menubarIcon from "../../assets/icons/outlined/menu-bar.svg";
 import { Image } from "@nextui-org/react";
 import AccountPopover from "../../components/Modules/AccountPopover/AccountPopover";
+import ThemeSwitch from "../../components/Modules/ThemeSwitch/ThemeSwitch";
 
 const TopNav = () => {
   const { toggleSidebar } = useAppContext();
@@ -15,7 +15,7 @@ const TopNav = () => {
         onClick={toggleSidebar}
       />
       <div className="flex items-center gap-2">
-        <ChangeTheme />
+        <ThemeSwitch />
         <AccountPopover />
       </div>
     </nav>

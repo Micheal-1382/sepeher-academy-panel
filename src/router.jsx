@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import IdentityLayout from "./layouts/identity-layout";
-import MainLayout from "./layouts/mainLayout/main-layout";
 import NotFound from "./pages/not-found";
 import UnhandledException from "./pages/unhandled-exception";
 import LoginPage from "./pages/login";
 import CoursesPage from "./pages/courses";
 import PrivateRoute from "./PrivateRoute";
 import NewsPage from "./pages/news";
+import MainLayout from "./layouts/MainLayout/MainLayout";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <MainLayout />
-     </PrivateRoute>
+      </PrivateRoute>
     ),
     // errorElement: <UnhandledException />,
     children: [

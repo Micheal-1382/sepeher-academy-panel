@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <AppProvider>
     <QueryClientProvider client={queryClient}>
       <NextUIProvider>
-        <NextThemesProvider attribute="class" defaultTheme="dark">
+        <NextThemesProvider attribute="class" defaultTheme="light">
           <App />
         </NextThemesProvider>
       </NextUIProvider>
