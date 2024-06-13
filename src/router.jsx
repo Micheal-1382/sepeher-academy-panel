@@ -6,7 +6,7 @@ import LoginPage from "./pages/login";
 import CoursesPage from "./pages/courses";
 import PrivateRoute from "./PrivateRoute";
 import NewsPage from "./pages/news";
-import MainLayout from "./layouts/MainLayout/MainLayout";
+import MainLayout from "./layouts/mainLayout";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         <MainLayout />
       </PrivateRoute>
     ),
-    // errorElement: <UnhandledException />,
+    errorElement: <UnhandledException />,
     children: [
       {
         index: true,
