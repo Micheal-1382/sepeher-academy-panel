@@ -10,7 +10,7 @@ const Sidebar = () => {
     <nav
       className={`sidebar ${
         !showSidebar ? "collapsed" : ""
-      } bg-white dark:bg-dark border-l-1 border-[#bfbfbf] dark:border-[#848484]`}
+      } bg-white dark:bg-dark`}
     >
       <div>
         <div className="flex flex-col items-center gap-2 pt-4">
@@ -47,13 +47,29 @@ const Sidebar = () => {
           <li>
             <Link
               className={"sidebar-link !flex gap-1 items-center mb-1"}
-              to={"news"}
+              to={"comments"}
             >
               <Image alt="" src={coursesIcon} />
               <span className="!text-lightBody dark:!text-darkBody">
-                همه اخبار
+                همه کامنت ها
               </span>
             </Link>
+          </li>
+
+          <li>
+            <Link
+              className={"sidebar-link !flex gap-1 items-center mb-1"}
+              to={"/"}
+            >
+              <Image alt="" src={coursesIcon} />
+              <span className="!text-lightBody dark:!text-darkBody">
+                همه نظرات
+              </span>
+            </Link>
+          </li>
+
+          <li className="sidebar-header !text-xl !text-lightTitle dark:!text-darkTitle mb-3">
+            مدیریت اخبار
           </li>
 
           <li>
