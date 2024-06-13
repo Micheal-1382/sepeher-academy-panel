@@ -6,10 +6,11 @@ import LoginPage from "./pages/login";
 import CoursesPage from "./pages/courses";
 import PrivateRoute from "./PrivateRoute";
 import NewsPage from "./pages/news";
-import CommentPage from "./pages/news";
+import CommentPage from "./pages/comments/index";
 import MainLayout from "./layouts/mainLayout";
 import CoursesCategoriesPage from "./pages/courses-categories";
 import AddCourseCategoriesPage from "./pages/add-course-categories";
+import UsersPage from "./pages/users";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "news",
         element: <NewsPage />,
+      },
+      {
+        path: "users",
+        element: <UsersPage />,
       },
     ],
   },

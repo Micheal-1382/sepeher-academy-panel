@@ -78,17 +78,17 @@ const Sidebar = () => {
           </li>
 
           <li className="sidebar-header !text-xl !text-lightTitle dark:!text-darkTitle mb-3">
-            مدیریت اخبار
+            مدیریت کاربر
           </li>
 
           <li>
             <Link
               className={"sidebar-link !flex gap-1 items-center mb-1"}
-              to={"/"}
+              to={"/users"}
             >
               <Image alt="" src={coursesIcon} />
               <span className="!text-lightBody dark:!text-darkBody">
-                همه نظرات
+                همه کاربران
               </span>
             </Link>
           </li>
