@@ -3,6 +3,7 @@ import {
   addCourseGroupApi,
   courseGroupApi,
   courseListApi,
+  deleteCourseGroupApi,
 } from "../../services/coursesApi";
 import { toast } from "react-toastify";
 
@@ -31,6 +32,21 @@ export const useAddCourseGroupApi = (reset) => {
         queryKey: ["CourseGroup"],
       });
       reset();
+    },
+  });
+};
+
+export const useDeleteCourseGroupApi = (triggerModal) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id) => deleteCourseGroupApi(id),
+    onSuccess: () => {
+      toast.success("دسته بندی با موفقیت حذف شد");
+      queryClient.invalidateQueries({
+        queryKey: ["CourseGroup"],
+      });
+      triggerModal(false);
     },
   });
 };

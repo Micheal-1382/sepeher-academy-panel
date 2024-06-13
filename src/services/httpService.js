@@ -44,7 +44,7 @@ axios.interceptors.response.use(
         break;
       }
       case 422: {
-        toast.error(error?.response?.data.ErrorMessage);
+        toast.error(error?.response?.data.ErrorMessage[0]);
         break;
       }
       default: {
