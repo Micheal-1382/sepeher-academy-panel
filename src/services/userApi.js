@@ -11,3 +11,11 @@ export const userListApi = (params) => {
 export const createUserApi = (payload) => {
   return httpService.post(baseUrl + `User/CreateUser`, payload);
 };
+
+export const deleteUserApi = (userId) => {
+  return httpService.delete(baseUrl + `User/DeleteUser`, {
+    data: {
+      userId,
+    },
+  });
+};

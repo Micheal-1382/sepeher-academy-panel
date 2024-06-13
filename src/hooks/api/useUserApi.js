@@ -1,5 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createUserApi, userListApi } from "../../services/userApi";
+import {
+  createUserApi,
+  deleteUserApi,
+  userListApi,
+} from "../../services/userApi";
 import { toast } from "react-toastify";
 
 export const useUserListApi = (params) => {
@@ -19,7 +23,22 @@ export const useCreateUserApi = (reset) => {
       queryClient.invalidateQueries({
         queryKey: ["userList"],
       });
-      reset()
+      reset();
+    },
+  });
+};
+
+export const useDeleteUserApi = (triggerModal) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (userId) => deleteUserApi(userId),
+    onSuccess: () => {
+      toast.success("کاربر با موفقیت حذف شد");
+      queryClient.invalidateQueries({
+        queryKey: ["userList"],
+      });
+      triggerModal(false);
     },
   });
 };

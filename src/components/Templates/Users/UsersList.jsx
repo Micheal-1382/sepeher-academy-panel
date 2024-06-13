@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import MainTable from "../../Modules/Table/MainTable";
@@ -10,7 +10,13 @@ import trashIcon from "../../../assets/icons/outlined/trash.svg";
 import HorizontalFilterBox from "./UsersFilterBox";
 import { sortTypeItems } from "../../../constants/sortTypeItems";
 import commentSortingColItems from "../../../constants/commentSortingColItems";
-import { useUserListApi } from "../../../hooks/api/useUserApi";
+import {
+  useDeleteUserApi,
+  useUserListApi,
+} from "../../../hooks/api/useUserApi";
+import { useModal } from "../../../hooks/useModal";
+import MainModal from "../../Modules/Modal/MainModal";
+import { DeleteBody } from "../../Modules/Modal/Content/DeleteUserContent";
 
 const columns = [
   { name: "نام", uid: "fname" },
@@ -28,10 +34,18 @@ export default function UsersList() {
 
   const queryParams = getQueryParams(search);
 
+  const selectedUserData = useRef();
+
+  const { isOpen: isDeleteModalOpen, triggerModal: triggerDeleteModal } =
+    useModal();
+
   const { data, isLoading } = useUserListApi(queryParams);
 
-  const renderCell = useCallback((comment, columnKey) => {
-    const cellValue = comment[columnKey];
+  const { mutate: deleteUserMutate, isPending: deleteUserPending } =
+    useDeleteUserApi(triggerDeleteModal);
+
+  const renderCell = useCallback((user, columnKey) => {
+    const cellValue = user[columnKey];
 
     switch (columnKey) {
       case "gmail":
@@ -65,7 +79,15 @@ export default function UsersList() {
               <Image alt="" src={editIcon} width={20} />
             </MainTooltip>
             <MainTooltip color="danger" content="حذف">
-              <Image alt="" src={trashIcon} width={20} />
+              <Image
+                alt=""
+                src={trashIcon}
+                width={20}
+                onClick={() => {
+                  selectedUserData.current = user.id;
+                  triggerDeleteModal(true);
+                }}
+              />
             </MainTooltip>
           </div>
         );
@@ -86,6 +108,16 @@ export default function UsersList() {
         renderCell={renderCell}
         isLoading={isLoading}
         totalCount={data?.totalCount ?? 0}
+      />
+      <MainModal
+        isOpen={isDeleteModalOpen}
+        body={
+          <DeleteBody
+            triggerModal={triggerDeleteModal}
+            action={() => deleteUserMutate(selectedUserData.current)}
+            actionLoading={deleteUserPending}
+          />
+        }
       />
     </div>
   );

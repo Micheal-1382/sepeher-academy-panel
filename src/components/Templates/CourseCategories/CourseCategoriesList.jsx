@@ -122,7 +122,9 @@ export default function CourseCategoriesList() {
         body={
           <DeleteBody
             triggerModal={triggerDeleteModal}
-            action={deleteCourseCategoryMutate}
+            action={() =>
+              deleteCourseCategoryMutate(selectedCourseCategoryData.current)
+            }
             actionLoading={deleteCourseCategoryPending}
           />
         }
