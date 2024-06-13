@@ -4,6 +4,7 @@ import {
   courseGroupApi,
   courseListApi,
   deleteCourseGroupApi,
+  updateCourseGroupApi,
 } from "../../services/coursesApi";
 import { toast } from "react-toastify";
 
@@ -43,6 +44,21 @@ export const useDeleteCourseGroupApi = (triggerModal) => {
     mutationFn: (id) => deleteCourseGroupApi(id),
     onSuccess: () => {
       toast.success("دسته بندی با موفقیت حذف شد");
+      queryClient.invalidateQueries({
+        queryKey: ["CourseGroup"],
+      });
+      triggerModal(false);
+    },
+  });
+};
+
+export const useUpdateCourseGroupApi = (triggerModal) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload) => updateCourseGroupApi(payload),
+    onSuccess: () => {
+      toast.success("دسته بندی با موفقیت آپدیت شد");
       queryClient.invalidateQueries({
         queryKey: ["CourseGroup"],
       });

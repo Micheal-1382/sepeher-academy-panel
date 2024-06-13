@@ -4,6 +4,7 @@ import { getQueryParams } from "../../../utils/getQueryParams";
 import {
   useCourseGroupApi,
   useDeleteCourseGroupApi,
+  useUpdateCourseGroupApi,
 } from "../../../hooks/api/useCoursesApi";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
 import { Image } from "@nextui-org/react";
@@ -16,11 +17,8 @@ import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
 import { useModal } from "../../../hooks/useModal";
 import MainModal from "../../Modules/Modal/MainModal";
-import {
-  Body,
-  Footer,
-  Header,
-} from "../../Modules/Modal/Content/DeleteCourseCategoryContent";
+import { DeleteBody } from "../../Modules/Modal/Content/DeleteCourseCategoryContent";
+import { UpdateBody } from "../../Modules/Modal/Content/UpdateCourseCategoryCourseContent";
 
 const columns = [
   { name: "نام دوره", uid: "courseName" },
@@ -37,16 +35,25 @@ export default function CourseCategoriesList() {
 
   const queryParams = getQueryParams(search);
 
-  const { isOpen, triggerModal } = useModal();
+  const { isOpen: isDeleteModalOpen, triggerModal: triggerDeleteModal } =
+    useModal();
+
+  const { isOpen: isEditModalOpen, triggerModal: triggerEditModal } =
+    useModal();
 
   const { data, isLoading } = useCourseGroupApi(queryParams);
 
   const {
     mutate: deleteCourseCategoryMutate,
     isPending: deleteCourseCategoryPending,
-  } = useDeleteCourseGroupApi(triggerModal);
+  } = useDeleteCourseGroupApi(triggerDeleteModal);
 
-  const selectedCourseCategoryId = useRef();
+  const {
+    mutate: updateCourseCategoryMutate,
+    isPending: updateCourseCategoryPending,
+  } = useUpdateCourseGroupApi(triggerEditModal);
+
+  const selectedCourseCategoryData = useRef();
 
   const renderCell = useCallback((course, columnKey) => {
     const cellValue = course[columnKey];
@@ -69,7 +76,15 @@ export default function CourseCategoriesList() {
               <Image alt="" src={eyeIcon} width={20} />
             </MainTooltip>
             <MainTooltip content="ویرایش">
-              <Image alt="" src={editIcon} width={20} />
+              <Image
+                alt=""
+                src={editIcon}
+                width={20}
+                onClick={() => {
+                  selectedCourseCategoryData.current = course;
+                  triggerEditModal(true);
+                }}
+              />
             </MainTooltip>
             <MainTooltip color="danger" content="حذف">
               <Image
@@ -77,8 +92,8 @@ export default function CourseCategoriesList() {
                 src={trashIcon}
                 width={20}
                 onClick={() => {
-                  selectedCourseCategoryId.current = course.groupId;
-                  triggerModal(true);
+                  selectedCourseCategoryData.current = course.groupId;
+                  triggerDeleteModal(true);
                 }}
               />
             </MainTooltip>
@@ -103,16 +118,24 @@ export default function CourseCategoriesList() {
         totalCount={data?.totalCount ?? 0}
       />
       <MainModal
-        isOpen={isOpen}
-        header={<Header />}
-        body={<Body />}
-        footer={
-          <Footer
-            triggerModal={triggerModal}
-            action={() =>
-              deleteCourseCategoryMutate(selectedCourseCategoryId.current)
-            }
+        isOpen={isDeleteModalOpen}
+        body={
+          <DeleteBody
+            triggerModal={triggerDeleteModal}
+            action={deleteCourseCategoryMutate}
             actionLoading={deleteCourseCategoryPending}
+          />
+        }
+      />
+      <MainModal
+        isOpen={isEditModalOpen}
+        size="2xl"
+        body={
+          <UpdateBody
+            defaultValues={selectedCourseCategoryData.current}
+            triggerModal={triggerEditModal}
+            action={updateCourseCategoryMutate}
+            actionLoading={updateCourseCategoryPending}
           />
         }
       />

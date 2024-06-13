@@ -12,6 +12,7 @@ export default function PrimaryInput({
   endContent,
   isInvalid,
   errorMessage,
+  isDisabled = false,
 }) {
   return (
     <Input
@@ -47,6 +48,7 @@ export default function PrimaryInput({
       endContent={endContent}
       isInvalid={isInvalid}
       errorMessage={errorMessage}
+      isDisabled={isDisabled}
     />
   );
 }
