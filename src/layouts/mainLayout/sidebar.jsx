@@ -40,6 +40,15 @@ const Sidebar = () => {
                 دسته بندی دوره ها
               </span>
             </Link>
+            <Link
+              className={"sidebar-link !flex gap-1 items-center mb-1"}
+              to={"add-course-categories"}
+            >
+              <Image alt="" src={coursesIcon} />
+              <span className="!text-lightBody dark:!text-darkBody">
+                افزودن دسته بندی
+              </span>
+            </Link>
           </li>
           <li className="sidebar-header !text-xl !text-lightTitle dark:!text-darkTitle mb-3">
             مدیریت اخبار

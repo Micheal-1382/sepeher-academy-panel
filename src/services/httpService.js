@@ -43,6 +43,10 @@ axios.interceptors.response.use(
         toast.error("دسترسی غیرمجاز");
         break;
       }
+      case 422: {
+        toast.error(error?.response?.data.ErrorMessage);
+        break;
+      }
       default: {
         break;
       }

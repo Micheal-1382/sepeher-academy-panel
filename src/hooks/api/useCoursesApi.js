@@ -1,5 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { courseGroupApi, courseListApi } from "../../services/coursesApi";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  addCourseGroupApi,
+  courseGroupApi,
+  courseListApi,
+} from "../../services/coursesApi";
+import { toast } from "react-toastify";
 
 export const useCourseListApi = (params) => {
   return useQuery({
@@ -12,5 +17,20 @@ export const useCourseGroupApi = (params) => {
   return useQuery({
     queryKey: ["CourseGroup", params],
     queryFn: () => courseGroupApi(params).then((data) => data.data),
+  });
+};
+
+export const useAddCourseGroupApi = (reset) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload) => addCourseGroupApi(payload),
+    onSuccess: () => {
+      toast.success("دسته بندی موردنظر با موفقیت اضافه شد");
+      queryClient.invalidateQueries({
+        queryKey: ["CourseGroup"],
+      });
+      reset();
+    },
   });
 };
