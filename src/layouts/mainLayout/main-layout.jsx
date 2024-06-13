@@ -17,7 +17,7 @@ const MainLayout = () => {
       <Sidebar />
       <div className="main">
         <TopNav />
-        <main className="content dark:bg-dark-lighter">
+        <main className="content bg-mainBodyBg dark:!bg-dark-lighter">
           <div className="container-fluid p-0">
             <Outlet />
           </div>

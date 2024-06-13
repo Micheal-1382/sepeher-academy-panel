@@ -70,6 +70,8 @@ export default function CoursesList() {
         return cellValue;
     }
   }, []);
+
+  console.log(data)
   return (
     <div className="space-y-3">
       <HorizontalFilterBox
