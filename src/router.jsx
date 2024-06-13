@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import NewsPage from "./pages/news";
 import MainLayout from "./layouts/mainLayout";
 import CoursesCategoriesPage from "./pages/courses-categories";
+import AddCourseCategoriesPage from "./pages/add-course-categories";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
         <MainLayout />
       </PrivateRoute>
     ),
-    // errorElement: <UnhandledException />,
+    errorElement: <UnhandledException />,
     children: [
       {
         index: true,
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "course-categories",
         element: <CoursesCategoriesPage />,
+      },
+      {
+        path: "add-course-categories",
+        element: <AddCourseCategoriesPage />,
       },
       {
         path: "courses/:id",
