@@ -11,6 +11,7 @@ import MainLayout from "./layouts/mainLayout";
 import CoursesCategoriesPage from "./pages/courses-categories";
 import AddCourseCategoriesPage from "./pages/add-course-categories";
 import UsersPage from "./pages/users";
+import AddUserPage from "./pages/add-user";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <UsersPage />,
+      },
+      {
+        path: "add-user",
+        element: <AddUserPage />,
       },
     ],
   },

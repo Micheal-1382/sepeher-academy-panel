@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import MainTable from "../../Modules/Table/MainTable";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
-import { Image } from "@nextui-org/react";
+import { Chip, Image } from "@nextui-org/react";
 import eyeIcon from "../../../assets/icons/outlined/eye.svg";
 import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
@@ -11,15 +11,15 @@ import HorizontalFilterBox from "./UsersFilterBox";
 import { sortTypeItems } from "../../../constants/sortTypeItems";
 import commentSortingColItems from "../../../constants/commentSortingColItems";
 import { useUserListApi } from "../../../hooks/api/useUserApi";
-// import { useUserApi } from "../../../hooks/api/useUserApi";
 
 const columns = [
   { name: "نام", uid: "fname" },
   { name: "نام خانوادگی", uid: "lname" },
   { name: "ایمیل", uid: "gmail" },
   { name: "شماره همراه", uid: "phoneNumber" },
-  { name: "پروفایل تکمیل درصد", uid: "profileCompletionPercentage" },
-  { name: "دانش آموز", uid: "isStudent" },
+  { name: "سطح کاربر", uid: "userRoles" },
+  { name: "وضعیت کاربر", uid: "active" },
+  { name: "عملیات", uid: "actions" },
 ];
 
 export default function UsersList() {
@@ -27,10 +27,8 @@ export default function UsersList() {
   const { search } = location;
 
   const queryParams = getQueryParams(search);
-  console.log(queryParams);
 
   const { data, isLoading } = useUserListApi(queryParams);
-  console.log(data);
 
   const renderCell = useCallback((comment, columnKey) => {
     const cellValue = comment[columnKey];
@@ -40,10 +38,19 @@ export default function UsersList() {
         return <p className="font-peyda">{cellValue}</p>;
       case "phoneNumber":
         return <p className="font-peyda">{cellValue}</p>;
-      case "profileCompletionPercentage":
+      case "active":
+        return (
+          <p className="font-peyda">
+            <Chip
+              color={cellValue === "True" ? "success" : "danger"}
+              className="text-btnText"
+            >
+              {cellValue === "True" ? "فعال" : "غیرفعال"}
+            </Chip>
+          </p>
+        );
+      case "userRoles":
         return <p className="font-peyda">{cellValue}</p>;
-      case "isStudent":
-        return <p className="font-peyda">{cellValue === true ? "هست" : "نیست"}</p>;
       case "fname":
         return <p className="font-peyda">{cellValue}</p>;
       case "lname":
@@ -72,7 +79,7 @@ export default function UsersList() {
         placeholder={"جستجو"}
         sortTypeArray={sortTypeItems}
         sortingColArray={commentSortingColItems}
-      /> 
+      />
       <MainTable
         data={data?.listUser ?? []}
         columns={columns}

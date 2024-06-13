@@ -23,11 +23,6 @@ const columns = [
   { name: "عملیات", uid: "actions" },
 ];
 
-const statusColor = {
-  true: "success",
-  false: "error",
-};
-
 export default function NewsList() {
   const location = useLocation();
   const { search } = location;
@@ -52,7 +47,10 @@ export default function NewsList() {
         return <p className="font-peyda">{cellValue}</p>;
       case "isActive":
         return (
-          <Chip color={statusColor[cellValue]} className="text-btnText">
+          <Chip
+            color={cellValue ? "success" : "danger"}
+            className="text-btnText"
+          >
             {cellValue ? "فعال" : "غیرفعال"}
           </Chip>
         );

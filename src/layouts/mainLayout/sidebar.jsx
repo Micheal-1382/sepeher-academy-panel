@@ -3,7 +3,10 @@ import { useAppContext } from "../../contexts/app/app-context";
 import { Link } from "react-router-dom";
 import { Image } from "@nextui-org/react";
 import coursesIcon from "../../assets/icons/theme/courses.svg";
-
+import userIcon from "../../assets/icons/outlined/user.svg";
+import newsIcon from "../../assets/icons/theme/phoneMode/news.svg";
+import plusIcon from "../../assets/icons/outlined/folder-plus.svg";
+import userplusIcon from "../../assets/icons/outlined/user-plus.svg";
 const Sidebar = () => {
   const { showSidebar } = useAppContext();
   return (
@@ -44,7 +47,7 @@ const Sidebar = () => {
               className={"sidebar-link !flex gap-1 items-center mb-1"}
               to={"add-course-categories"}
             >
-              <Image alt="" src={coursesIcon} />
+              <img alt="" src={plusIcon} className="w-[20px]" />
               <span className="!text-lightBody dark:!text-darkBody">
                 افزودن دسته بندی
               </span>
@@ -58,7 +61,7 @@ const Sidebar = () => {
               className={"sidebar-link !flex gap-1 items-center mb-1"}
               to={"news"}
             >
-              <Image alt="" src={coursesIcon} />
+              <Image alt="" src={newsIcon} width={25} />
               <span className="!text-lightBody dark:!text-darkBody">
                 همه اخبار
               </span>
@@ -75,21 +78,8 @@ const Sidebar = () => {
               </span>
             </Link>
           </li>
-
-          <li>
-            <Link
-              className={"sidebar-link !flex gap-1 items-center mb-1"}
-              to={"/"}
-            >
-              <Image alt="" src={coursesIcon} />
-              <span className="!text-lightBody dark:!text-darkBody">
-                همه نظرات
-              </span>
-            </Link>
-          </li>
-
           <li className="sidebar-header !text-xl !text-lightTitle dark:!text-darkTitle mb-3">
-            مدیریت کاربر
+            مدیریت کاربران
           </li>
 
           <li>
@@ -97,9 +87,20 @@ const Sidebar = () => {
               className={"sidebar-link !flex gap-1 items-center mb-1"}
               to={"/users"}
             >
-              <Image alt="" src={coursesIcon} />
+              <img alt="" src={userIcon} className="w-[25px]" />
               <span className="!text-lightBody dark:!text-darkBody">
                 همه کاربران
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={"sidebar-link !flex gap-1 items-center mb-1"}
+              to={"/add-user"}
+            >
+              <img alt="" src={userplusIcon} className="w-[25px]" />
+              <span className="!text-lightBody dark:!text-darkBody">
+                افزودن کاربر
               </span>
             </Link>
           </li>
