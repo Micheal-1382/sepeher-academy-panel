@@ -7,6 +7,7 @@ import CoursesPage from "./pages/courses";
 import PrivateRoute from "./PrivateRoute";
 import NewsPage from "./pages/news";
 import MainLayout from "./layouts/mainLayout";
+import CoursesCategoriesPage from "./pages/courses-categories";
 
 const router = createBrowserRouter([
   {
@@ -16,11 +17,15 @@ const router = createBrowserRouter([
         <MainLayout />
       </PrivateRoute>
     ),
-    errorElement: <UnhandledException />,
+    // errorElement: <UnhandledException />,
     children: [
       {
         index: true,
         element: <CoursesPage />,
+      },
+      {
+        path: "course-categories",
+        element: <CoursesCategoriesPage />,
       },
       {
         path: "courses/:id",
