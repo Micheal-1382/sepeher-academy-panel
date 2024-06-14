@@ -36,3 +36,7 @@ export const updateCourseGroupApi = (payload) => {
     },
   });
 };
+
+export const courseGroupDetailsApi = (params) => {
+  return httpService.get(baseUrl + `CourseGroup/Details`, { params });
+};

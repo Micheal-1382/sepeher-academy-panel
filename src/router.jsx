@@ -12,6 +12,7 @@ import CoursesCategoriesPage from "./pages/courses-categories";
 import AddCourseCategoriesPage from "./pages/add-course-categories";
 import UsersPage from "./pages/users";
 import AddUserPage from "./pages/add-user";
+import CategoryDetailsPage from "./pages/courses-categories/[id]";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
         <MainLayout />
       </PrivateRoute>
     ),
-    // errorElement: <UnhandledException />,
+    errorElement: <UnhandledException />,
     children: [
       {
         index: true,
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "course-categories",
         element: <CoursesCategoriesPage />,
+      },
+      {
+        path: "course-categories/:Id",
+        element: <CategoryDetailsPage />,
       },
       {
         path: "add-course-categories",

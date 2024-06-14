@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   addCourseGroupApi,
   courseGroupApi,
+  courseGroupDetailsApi,
   courseListApi,
   deleteCourseGroupApi,
   updateCourseGroupApi,
@@ -64,5 +65,12 @@ export const useUpdateCourseGroupApi = (triggerModal) => {
       });
       triggerModal(false);
     },
+  });
+};
+
+export const useCourseGroupDetailsApi = (params) => {
+  return useQuery({
+    queryKey: ["CourseGroup", params],
+    queryFn: () => courseGroupDetailsApi(params).then((data) => data.data),
   });
 };

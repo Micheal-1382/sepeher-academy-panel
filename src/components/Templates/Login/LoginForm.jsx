@@ -48,7 +48,7 @@ export default function LoginForm() {
         label={"رمزعبور"}
         variant="faded"
         className="font-peyda"
-        type="text"
+        type="password"
         register={{
           ...register("password", {
             required: "رمزعبورت رو نمیتونی خالی بذاری",
