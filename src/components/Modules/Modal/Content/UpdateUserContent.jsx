@@ -43,22 +43,30 @@ export const UpdateBody = ({ userId, triggerModal, action, actionLoading }) => {
         birthDay: parseDate(data.birthDay.slice(0, 10)),
         insertDate: parseDate(data.insertDate.slice(0, 10)),
         roles: data.roles,
-        // not inserted
+        courses: data.courses,
+        coursesReseves: data.coursesReseves,
+        // not implemented
         latitude: data.latitude,
         longitude: data.longitude,
         gender: data.gender,
         receiveMessageEvent: data.receiveMessageEvent,
+        userProfileId: data.userProfileId,
       });
     }
   }, [data]);
 
   const submitFormHandler = (data) => {
-    console.log(data);
+    action(data);
   };
 
   const removeRoleHandler = (id, roles, onChange) => {
     const newRolesArray = roles.filter((role) => role.id !== id);
     onChange(newRolesArray);
+  };
+
+  const removeCourseHandler = (id, courses, onChange) => {
+    const newCoursesArray = courses.filter((role) => role.courseId !== id);
+    onChange(newCoursesArray);
   };
 
   if (isPending) {
@@ -367,6 +375,78 @@ export const UpdateBody = ({ userId, triggerModal, action, actionLoading }) => {
             )}
           />
         </AccordionItem>
+        <AccordionItem
+          key={3}
+          className="!shadow-none !bg-mainBodyBg text-lightTitle font-peyda"
+          classNames={{
+            title: ["text-right"],
+          }}
+          aria-label="دوره ها"
+          title={"دوره ها"}
+        >
+          <Controller
+            control={control}
+            name="courses"
+            render={({ field: { onChange, value } }) => (
+              <div className="grid grid-cols-2 gap-4">
+                {value.map((course, index) => (
+                  <div
+                    className="font-peyda border-[1px] rounded-xl p-2 bg-white flex items-center justify-between"
+                    key={index}
+                  >
+                    <p>{course.title}</p>
+                    <MainTooltip color={"danger"} content={"حذف"}>
+                      <img
+                        alt=""
+                        src={trashIcon}
+                        className="w-[20px]"
+                        onClick={() =>
+                          removeCourseHandler(course.courseId, value, onChange)
+                        }
+                      />
+                    </MainTooltip>
+                  </div>
+                ))}
+              </div>
+            )}
+          />
+        </AccordionItem>
+        <AccordionItem
+          key={4}
+          className="!shadow-none !bg-mainBodyBg text-lightTitle font-peyda"
+          classNames={{
+            title: ["text-right"],
+          }}
+          aria-label="دوره های رزرو"
+          title={"دوره های رزرو"}
+        >
+          <Controller
+            control={control}
+            name="coursesReseves"
+            render={({ field: { onChange, value } }) => (
+              <div className="grid grid-cols-2 gap-4">
+                {value.map((course, index) => (
+                  <div
+                    className="font-peyda border-[1px] rounded-xl p-2 bg-white flex items-center justify-between"
+                    key={index}
+                  >
+                    <p>{course.courseName}</p>
+                    <MainTooltip color={"danger"} content={"حذف"}>
+                      <img
+                        alt=""
+                        src={trashIcon}
+                        className="w-[20px]"
+                        onClick={() =>
+                          removeCourseHandler(course.courseId, value, onChange)
+                        }
+                      />
+                    </MainTooltip>
+                  </div>
+                ))}
+              </div>
+            )}
+          />
+        </AccordionItem>
       </Accordion>
       <div className="flex items-center gap-2">
         <MainButton
@@ -378,7 +458,6 @@ export const UpdateBody = ({ userId, triggerModal, action, actionLoading }) => {
           content={"بروزرسانی"}
           className={"!bg-secondary text-btnText font-peyda"}
           type="submit"
-          onClick={action}
           isLoading={actionLoading}
         />
       </div>

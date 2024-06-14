@@ -14,14 +14,18 @@ export default function HorizontalFilterBox({
   sortingColArray,
   sortTypeArray,
 }) {
-  const { register, handleSubmit } = useForm();
-
   const location = useLocation();
   const { pathname, search } = location;
 
   const navigate = useNavigate();
 
   const queryParams = getQueryParams(search);
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      Query: queryParams?.Query ?? "",
+    },
+  });
 
   const submitFormHandler = (data) => {
     let newQuery = { ...queryParams };
