@@ -2,6 +2,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   createUserApi,
   deleteUserApi,
+  updateUserApi,
+  userDetailsApi,
   userListApi,
 } from "../../services/userApi";
 import { toast } from "react-toastify";
@@ -40,5 +42,27 @@ export const useDeleteUserApi = (triggerModal) => {
       });
       triggerModal(false);
     },
+  });
+};
+
+export const useUpdateUserApi = (triggerModal) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload) => updateUserApi(payload),
+    onSuccess: () => {
+      toast.success("کاربر با موفقیت بروزرسانی شد");
+      queryClient.invalidateQueries({
+        queryKey: ["userList"],
+      });
+      triggerModal(false);
+    },
+  });
+};
+
+export const useUserDetailsApi = (userId) => {
+  return useQuery({
+    queryKey: ["UserDetails", userId],
+    queryFn: () => userDetailsApi(userId).then((data) => data.data),
   });
 };

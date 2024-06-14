@@ -55,7 +55,7 @@ export default function HorizontalFilterBox({
           }}
         />
         <MainButton
-          className="absolute left-0 top-3 min-w-unit-0"
+          className="absolute left-0 top-0 min-w-unit-0"
           content={
             <img alt="" src={searchIcon} className="cursor-pointer m-0 w-6" />
           }

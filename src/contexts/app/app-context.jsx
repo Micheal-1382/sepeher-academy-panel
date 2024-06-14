@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useEffect } from "react";
 import { createContext, useReducer } from "react";
-import { useTranslation } from "react-i18next";
 import appReducer from "./app-reducer";
 
 const AppContext = createContext();
@@ -12,7 +11,6 @@ const initialState = {
 };
 
 const AppProvider = ({ children }) => {
-  const { i18n } = useTranslation();
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   const changeLanguage = (language) => {
@@ -28,7 +26,6 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    i18n.changeLanguage(state.language);
     localStorage.setItem("language", state.language);
     document.body.dataset.direction = state.language === "fa" ? "rtl" : "ltr";
     document.body.dataset.sidebarPosition =

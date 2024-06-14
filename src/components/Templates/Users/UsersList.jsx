@@ -12,11 +12,13 @@ import { sortTypeItems } from "../../../constants/sortTypeItems";
 import commentSortingColItems from "../../../constants/commentSortingColItems";
 import {
   useDeleteUserApi,
+  useUpdateUserApi,
   useUserListApi,
 } from "../../../hooks/api/useUserApi";
 import { useModal } from "../../../hooks/useModal";
 import MainModal from "../../Modules/Modal/MainModal";
 import { DeleteBody } from "../../Modules/Modal/Content/DeleteUserContent";
+import { UpdateBody } from "../../Modules/Modal/Content/UpdateUserContent";
 
 const columns = [
   { name: "نام", uid: "fname" },
@@ -39,10 +41,16 @@ export default function UsersList() {
   const { isOpen: isDeleteModalOpen, triggerModal: triggerDeleteModal } =
     useModal();
 
+  const { isOpen: isEditeModalOpen, triggerModal: triggerEditModal } =
+    useModal();
+
   const { data, isLoading } = useUserListApi(queryParams);
 
   const { mutate: deleteUserMutate, isPending: deleteUserPending } =
     useDeleteUserApi(triggerDeleteModal);
+
+  const { mutate: updateUserMutate, isPending: updateUserPending } =
+    useUpdateUserApi(triggerEditModal);
 
   const renderCell = useCallback((user, columnKey) => {
     const cellValue = user[columnKey];
@@ -54,14 +62,12 @@ export default function UsersList() {
         return <p className="font-peyda">{cellValue}</p>;
       case "active":
         return (
-          <p className="font-peyda">
-            <Chip
-              color={cellValue === "True" ? "success" : "danger"}
-              className="text-btnText"
-            >
-              {cellValue === "True" ? "فعال" : "غیرفعال"}
-            </Chip>
-          </p>
+          <Chip
+            color={cellValue === "True" ? "success" : "danger"}
+            className="text-btnText font-peyda"
+          >
+            {cellValue === "True" ? "فعال" : "غیرفعال"}
+          </Chip>
         );
       case "userRoles":
         return <p className="font-peyda">{cellValue}</p>;
@@ -76,7 +82,15 @@ export default function UsersList() {
               <Image alt="" src={eyeIcon} width={20} />
             </MainTooltip>
             <MainTooltip content="ویرایش">
-              <Image alt="" src={editIcon} width={20} />
+              <Image
+                alt=""
+                src={editIcon}
+                width={20}
+                onClick={() => {
+                  selectedUserData.current = user.id;
+                  triggerEditModal(true);
+                }}
+              />
             </MainTooltip>
             <MainTooltip color="danger" content="حذف">
               <Image
@@ -114,6 +128,18 @@ export default function UsersList() {
         body={
           <DeleteBody
             triggerModal={triggerDeleteModal}
+            action={() => deleteUserMutate(selectedUserData.current)}
+            actionLoading={deleteUserPending}
+          />
+        }
+      />
+      <MainModal
+        isOpen={isEditeModalOpen}
+        size="3xl"
+        body={
+          <UpdateBody
+            userId={selectedUserData.current}
+            triggerModal={triggerEditModal}
             action={() => deleteUserMutate(selectedUserData.current)}
             actionLoading={deleteUserPending}
           />

@@ -1,6 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import { revokeTokenAndRoles } from "../utils/revokeToken";
 
 axios.interceptors.request.use(
   function (config) {
@@ -30,13 +31,15 @@ axios.interceptors.response.use(
     return response;
   },
   function (error) {
+    if (!error.response) {
+      toast.error("خطای شبکه یا عدم دسترسی به سرور");
+      revokeTokenAndRoles();
+      return Promise.reject(error);
+    }
+
     switch (error?.response?.status) {
       case 400: {
         toast.error(error?.response?.data.ErrorMessage);
-        break;
-      }
-      case 401: {
-        toast.error("شما برای این عمل، احراز هویت نشده اید");
         break;
       }
       case 403: {

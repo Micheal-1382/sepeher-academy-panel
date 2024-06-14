@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import { convertQueryParamsToString } from "../../../utils/convertQueryParamsToString";
@@ -23,6 +23,7 @@ export default function MainTable({
   totalCount,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
+  const [rowsOfPage, setRowsOfPage] = useState(10);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,11 +31,15 @@ export default function MainTable({
 
   const queryParams = getQueryParams(search);
 
+  useEffect(() => {
+    if (queryParams?.RowsOfPage) {
+      setRowsOfPage(queryParams?.RowsOfPage);
+    }
+  }, []);
+
   const pages = useMemo(() => {
-    return totalCount
-      ? Math.ceil(totalCount / queryParams?.RowsOfPage || 5)
-      : 0;
-  }, [totalCount]);
+    return totalCount ? Math.ceil(totalCount / rowsOfPage) : 0;
+  }, [totalCount, rowsOfPage]);
 
   const changePageHandler = (newPage) => {
     const newQuery = {

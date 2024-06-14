@@ -1,7 +1,6 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
-import "./core/i18n";
 import { useEffect } from "react";
 import { useAppContext } from "./contexts/app/app-context";
 import "react-toastify/dist/ReactToastify.css";

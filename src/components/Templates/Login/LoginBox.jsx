@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 const LoginBox = () => {
   return (
     <>
-      <div className="flex items-center flex-col mt-4">
+      <div className="flex items-center flex-col my-4">
         <Image src={logo} alt="" width={100} />
         <h1 className="font-peyda !text-3xl mt-4">سپهر آکادمی | پنل</h1>
         <p className="font-peyda !text-lg">ورود به حساب کاربری</p>

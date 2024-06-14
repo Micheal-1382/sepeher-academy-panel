@@ -19,3 +19,11 @@ export const deleteUserApi = (userId) => {
     },
   });
 };
+
+export const updateUserApi = (payload) => {
+  return httpService.put(baseUrl + `User/UpdateUser`, payload);
+};
+
+export const userDetailsApi = (userId) => {
+  return httpService.get(baseUrl + `User/UserDetails/${userId}`);
+};

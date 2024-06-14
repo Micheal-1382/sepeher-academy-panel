@@ -1,25 +1,26 @@
-import { Input } from "@nextui-org/react";
+import { Textarea } from "@nextui-org/react";
 import React from "react";
 
-export default function PrimaryInput({
+export default function PrimaryTextarea({
   placeholder,
   label,
   variant,
   className,
-  type = "text",
   register,
-  startContent,
-  endContent,
   isInvalid,
   errorMessage,
-  isDisabled = false,
 }) {
   return (
-    <Input
+    <Textarea
       className={className}
-      variant={variant}
-      type={type}
+      disableAnimation
+      disableAutosize
       label={label}
+      placeholder={placeholder}
+      variant={variant}
+      isInvalid={isInvalid}
+      errorMessage={errorMessage}
+      {...register}
       classNames={{
         mainWrapper: ["bg-transparent outline-noen rounded-2xl"],
         inputWrapper: [
@@ -28,13 +29,6 @@ export default function PrimaryInput({
         input: ["bg-transparent"],
         innerWrapper: ["bg-transparent"],
       }}
-      placeholder={placeholder}
-      {...register}
-      startContent={startContent}
-      endContent={endContent}
-      isInvalid={isInvalid}
-      errorMessage={errorMessage}
-      isDisabled={isDisabled}
     />
   );
 }

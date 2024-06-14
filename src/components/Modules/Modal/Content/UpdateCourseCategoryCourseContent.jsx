@@ -32,6 +32,7 @@ export const UpdateBody = ({
         <PrimaryInput
           placeholder={"شناسه"}
           className={"font-peyda"}
+          label={"شناسه"}
           variant="faded"
           register={{
             ...register("Id", {
@@ -44,6 +45,7 @@ export const UpdateBody = ({
         />
         <PrimaryInput
           placeholder={"نام گروه"}
+          label={"نام گروه"}
           className={"font-peyda"}
           variant="faded"
           register={{
@@ -56,6 +58,7 @@ export const UpdateBody = ({
         />
         <PrimaryInput
           placeholder={"شناسه دوره"}
+          label={"شناسه دوره"}
           className={"font-peyda"}
           variant="faded"
           register={{
@@ -69,6 +72,7 @@ export const UpdateBody = ({
         />
         <PrimaryInput
           placeholder={"ظرفیت گروه"}
+          label={"ظرفیت گروه"}
           className={"font-peyda"}
           variant="faded"
           register={{

@@ -26,8 +26,9 @@ export default function LoginForm() {
       className="flex flex-col gap-3"
     >
       <PrimaryInput
-        placeholder="شماره موبایل/جیمیل"
+        placeholder="شماره موبایل / ایمیل"
         variant="faded"
+        label={"شماره موبایل / ایمیل"}
         className="font-peyda"
         type="text"
         register={{
@@ -44,6 +45,7 @@ export default function LoginForm() {
       />
       <PrimaryInput
         placeholder="رمزعبور"
+        label={"رمزعبور"}
         variant="faded"
         className="font-peyda"
         type="text"
