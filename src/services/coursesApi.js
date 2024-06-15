@@ -40,3 +40,7 @@ export const updateCourseGroupApi = (payload) => {
 export const courseGroupDetailsApi = (params) => {
   return httpService.get(baseUrl + `CourseGroup/Details`, { params });
 };
+
+export const courseReserveDetailsApi = (CourseId) => {
+  return httpService.get(baseUrl + `CourseReserve/${CourseId}`);
+};

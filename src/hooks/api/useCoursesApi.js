@@ -4,6 +4,7 @@ import {
   courseGroupApi,
   courseGroupDetailsApi,
   courseListApi,
+  courseReserveDetailsApi,
   deleteCourseGroupApi,
   updateCourseGroupApi,
 } from "../../services/coursesApi";
@@ -72,5 +73,12 @@ export const useCourseGroupDetailsApi = (params) => {
   return useQuery({
     queryKey: ["CourseGroup", params],
     queryFn: () => courseGroupDetailsApi(params).then((data) => data.data),
+  });
+};
+
+export const useCourseReserveDetailsApi = (CourseId) => {
+  return useQuery({
+    queryKey: ["CourseReserveDetails"],
+    queryFn: () => courseReserveDetailsApi(CourseId).then((data) => data.data),
   });
 };

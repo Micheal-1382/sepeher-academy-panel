@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useCallback, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import MainTable from "../../Modules/Table/MainTable";
 import { useCourseListApi } from "../../../hooks/api/useCoursesApi";
@@ -8,11 +8,15 @@ import { Image } from "@nextui-org/react";
 import eyeIcon from "../../../assets/icons/outlined/eye.svg";
 import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
+import infoIcon from "../../../assets/icons/theme/info.svg";
 import HorizontalFilterBox from "./CoursesFilterBox";
 import { sortTypeItems } from "../../../constants/sortTypeItems";
 import courseSortingColItems from "../../../constants/courseSortingColItems";
 import convertToPersianDigit from "../../../utils/convertToPersianDigit";
 import addCommasToPersianNumber from "../../../utils/addCommasToPersianDigit";
+import { useModal } from "../../../hooks/useModal";
+import MainModal from "../../Modules/Modal/MainModal";
+import { CourseReserveBody } from "../../Modules/Modal/Content/CourseReserveStudentsContent";
 
 const columns = [
   { name: "نام دوره", uid: "fullName" },
@@ -32,6 +36,13 @@ export default function CoursesList() {
 
   const { data, isLoading } = useCourseListApi(queryParams);
 
+  const selectedCourseId = useRef();
+
+  const {
+    isOpen: isCourseReserveOpen,
+    triggerModal: triggerCourseReserveModal,
+  } = useModal();
+
   const renderCell = useCallback((course, columnKey) => {
     const cellValue = course[columnKey];
 
@@ -43,7 +54,28 @@ export default function CoursesList() {
       case "levelName":
         return <p className="font-peyda">{cellValue}</p>;
       case "reserveCount":
-        return <p className="font-peyda">{cellValue}</p>;
+        return (
+          <p className="font-peyda flex items-center gap-1">
+            <span>{cellValue}</span>
+            <MainTooltip
+              content={
+                <div className="p-2">
+                  <p
+                    className="!text-primary cursor-pointer"
+                    onClick={() => {
+                      selectedCourseId.current = course.courseId;
+                      triggerCourseReserveModal(true);
+                    }}
+                  >
+                    مشاهده دانشجویان رزرو شده
+                  </p>
+                </div>
+              }
+            >
+              <img src={infoIcon} alt="" className="w-[20px]" />
+            </MainTooltip>
+          </p>
+        );
       case "statusName":
         return <p className="font-peyda">{cellValue}</p>;
       case "cost":
@@ -83,6 +115,11 @@ export default function CoursesList() {
         renderCell={renderCell}
         isLoading={isLoading}
         totalCount={data?.totalCount ?? 0}
+      />
+      <MainModal
+        isOpen={isCourseReserveOpen}
+        size="4xl"
+        body={<CourseReserveBody CourseId={selectedCourseId.current} />}
       />
     </div>
   );
