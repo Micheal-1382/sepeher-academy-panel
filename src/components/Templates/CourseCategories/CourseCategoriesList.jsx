@@ -7,7 +7,7 @@ import {
   useUpdateCourseGroupApi,
 } from "../../../hooks/api/useCoursesApi";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
-import { Image } from "@nextui-org/react";
+import { Image, useDisclosure } from "@nextui-org/react";
 import HorizontalFilterBox from "../Courses/CoursesFilterBox";
 import MainTable from "../../Modules/Table/MainTable";
 import { sortTypeItems } from "../../../constants/sortTypeItems";
@@ -15,7 +15,6 @@ import courseSortingColItems from "../../../constants/courseSortingColItems";
 import eyeIcon from "../../../assets/icons/outlined/eye.svg";
 import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
-import { useModal } from "../../../hooks/useModal";
 import MainModal from "../../Modules/Modal/MainModal";
 import { DeleteBody } from "../../Modules/Modal/Content/DeleteCourseCategoryContent";
 import { UpdateBody } from "../../Modules/Modal/Content/UpdateCourseCategoryCourseContent";
@@ -36,23 +35,31 @@ export default function CourseCategoriesList() {
 
   const queryParams = getQueryParams(search);
 
-  const { isOpen: isDeleteModalOpen, triggerModal: triggerDeleteModal } =
-    useModal();
+  const {
+    isOpen: isDeleteModalOpen,
+    onOpen: onOpenDeleteModal,
+    onClose: onCloseDeleteModal,
+    onOpenChange: onOpenChangeDeleteModal,
+  } = useDisclosure();
 
-  const { isOpen: isEditModalOpen, triggerModal: triggerEditModal } =
-    useModal();
+  const {
+    isOpen: isEditModalOpen,
+    onOpen: onOpenEditModal,
+    onClose: onCloseEditModal,
+    onOpenChange: onOpenChangeEditModal,
+  } = useDisclosure();
 
   const { data, isLoading } = useCourseGroupApi(queryParams);
 
   const {
     mutate: deleteCourseCategoryMutate,
     isPending: deleteCourseCategoryPending,
-  } = useDeleteCourseGroupApi(triggerDeleteModal);
+  } = useDeleteCourseGroupApi(onCloseDeleteModal);
 
   const {
     mutate: updateCourseCategoryMutate,
     isPending: updateCourseCategoryPending,
-  } = useUpdateCourseGroupApi(triggerEditModal);
+  } = useUpdateCourseGroupApi(onCloseEditModal);
 
   const selectedCourseCategoryData = useRef();
 
@@ -92,7 +99,7 @@ export default function CourseCategoriesList() {
                 className="cursor-pointer"
                 onClick={() => {
                   selectedCourseCategoryData.current = course;
-                  triggerEditModal(true);
+                  onOpenEditModal();
                 }}
               />
             </MainTooltip>
@@ -104,7 +111,7 @@ export default function CourseCategoriesList() {
                 className="cursor-pointer"
                 onClick={() => {
                   selectedCourseCategoryData.current = course.groupId;
-                  triggerDeleteModal(true);
+                  onOpenDeleteModal();
                 }}
               />
             </MainTooltip>
@@ -130,9 +137,10 @@ export default function CourseCategoriesList() {
       />
       <MainModal
         isOpen={isDeleteModalOpen}
+        onOpenChange={onOpenChangeDeleteModal}
         body={
           <DeleteBody
-            triggerModal={triggerDeleteModal}
+            closeModal={onCloseDeleteModal}
             action={() =>
               deleteCourseCategoryMutate(selectedCourseCategoryData.current)
             }
@@ -142,11 +150,12 @@ export default function CourseCategoriesList() {
       />
       <MainModal
         isOpen={isEditModalOpen}
+        onOpenChange={onOpenChangeEditModal}
         size="2xl"
         body={
           <UpdateBody
             defaultValues={selectedCourseCategoryData.current}
-            triggerModal={triggerEditModal}
+            closeModal={onCloseEditModal}
             action={updateCourseCategoryMutate}
             actionLoading={updateCourseCategoryPending}
           />

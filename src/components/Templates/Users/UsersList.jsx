@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import MainTable from "../../Modules/Table/MainTable";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
-import { Chip, Image } from "@nextui-org/react";
+import { Chip, Image, useDisclosure } from "@nextui-org/react";
 import eyeIcon from "../../../assets/icons/outlined/eye.svg";
 import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
@@ -15,7 +15,6 @@ import {
   useUpdateUserApi,
   useUserListApi,
 } from "../../../hooks/api/useUserApi";
-import { useModal } from "../../../hooks/useModal";
 import MainModal from "../../Modules/Modal/MainModal";
 import { DeleteBody } from "../../Modules/Modal/Content/DeleteUserContent";
 import { UpdateBody } from "../../Modules/Modal/Content/UpdateUserContent";
@@ -38,19 +37,27 @@ export default function UsersList() {
 
   const selectedUserData = useRef();
 
-  const { isOpen: isDeleteModalOpen, triggerModal: triggerDeleteModal } =
-    useModal();
+  const {
+    isOpen: isDeleteModalOpen,
+    onClose: onCloseDeleteModal,
+    onOpen: onOpenDeleteModal,
+    onOpenChange: onOpenChangeDeleteModal,
+  } = useDisclosure();
 
-  const { isOpen: isEditeModalOpen, triggerModal: triggerEditModal } =
-    useModal();
+  const {
+    isOpen: isEditeModalOpen,
+    onClose: onCloseEditeModal,
+    onOpen: onOpenEditModal,
+    onOpenChange: onOpenChangeEditModal,
+  } = useDisclosure();
 
   const { data, isLoading } = useUserListApi(queryParams);
 
   const { mutate: deleteUserMutate, isPending: deleteUserPending } =
-    useDeleteUserApi(triggerDeleteModal);
+    useDeleteUserApi(onCloseDeleteModal);
 
   const { mutate: updateUserMutate, isPending: updateUserPending } =
-    useUpdateUserApi(triggerEditModal);
+    useUpdateUserApi(onCloseEditeModal);
 
   const renderCell = useCallback((user, columnKey) => {
     const cellValue = user[columnKey];
@@ -88,7 +95,7 @@ export default function UsersList() {
                 width={20}
                 onClick={() => {
                   selectedUserData.current = user.id;
-                  triggerEditModal(true);
+                  onOpenEditModal();
                 }}
               />
             </MainTooltip>
@@ -99,7 +106,7 @@ export default function UsersList() {
                 width={20}
                 onClick={() => {
                   selectedUserData.current = user.id;
-                  triggerDeleteModal(true);
+                  onOpenDeleteModal();
                 }}
               />
             </MainTooltip>
@@ -125,9 +132,10 @@ export default function UsersList() {
       />
       <MainModal
         isOpen={isDeleteModalOpen}
+        onOpenChange={onOpenChangeDeleteModal}
         body={
           <DeleteBody
-            triggerModal={triggerDeleteModal}
+            closeModal={onCloseDeleteModal}
             action={() => deleteUserMutate(selectedUserData.current)}
             actionLoading={deleteUserPending}
           />
@@ -135,13 +143,14 @@ export default function UsersList() {
       />
       <MainModal
         isOpen={isEditeModalOpen}
+        onOpenChange={onOpenChangeEditModal}
         size="3xl"
         body={
           <UpdateBody
             userId={selectedUserData.current}
-            triggerModal={triggerEditModal}
-            action={() => deleteUserMutate(selectedUserData.current)}
-            actionLoading={deleteUserPending}
+            closeModal={onCloseEditeModal}
+            action={updateUserMutate}
+            actionLoading={updateUserPending}
           />
         }
       />

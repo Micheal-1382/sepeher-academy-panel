@@ -2,13 +2,14 @@ import { useCallback } from "react";
 import MainTable from "../../Table/MainTable";
 import { Chip, Spinner } from "@nextui-org/react";
 import { useCourseReserveDetailsApi } from "../../../../hooks/api/useCoursesApi";
+import { convertToPersianDate } from "../../../../utils/convertToPersianDate";
 
 const columns = [
-  { name: "نام دوره", uid: "studentName" },
-  { name: "نوع دوره", uid: "reserverDate" },
-  { name: "سطح دوره", uid: "accept" },
-  { name: "تعداد رزرو", uid: "courseName" },
-  { name: "وضعیت دوره", uid: "reserveId" },
+  { name: "نام دانشجو", uid: "studentName" },
+  { name: "تاریخ رزرو", uid: "reserverDate" },
+  { name: "وضعیت ثبت", uid: "accept" },
+  { name: "نام دوره", uid: "courseName" },
+  { name: "شناسه رزرو", uid: "reserveId" },
 ];
 
 export const CourseReserveBody = ({ CourseId }) => {
@@ -21,7 +22,7 @@ export const CourseReserveBody = ({ CourseId }) => {
       case "studentName":
         return <p className="font-peyda">{cellValue}</p>;
       case "reserverDate":
-        return <p className="font-peyda">{cellValue}</p>;
+        return <p className="font-peyda">{convertToPersianDate(cellValue)}</p>;
       case "accept":
         return (
           <Chip
@@ -55,7 +56,7 @@ export const CourseReserveBody = ({ CourseId }) => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex items-center justify-center gap-2 font-peyda">
         <p>درحال بارگیری</p>
         <Spinner />
       </div>

@@ -39,7 +39,7 @@ export const useAddCourseGroupApi = (reset) => {
   });
 };
 
-export const useDeleteCourseGroupApi = (triggerModal) => {
+export const useDeleteCourseGroupApi = (closeModal) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -49,12 +49,12 @@ export const useDeleteCourseGroupApi = (triggerModal) => {
       queryClient.invalidateQueries({
         queryKey: ["CourseGroup"],
       });
-      triggerModal(false);
+      closeModal();
     },
   });
 };
 
-export const useUpdateCourseGroupApi = (triggerModal) => {
+export const useUpdateCourseGroupApi = (closeModal) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -64,7 +64,7 @@ export const useUpdateCourseGroupApi = (triggerModal) => {
       queryClient.invalidateQueries({
         queryKey: ["CourseGroup"],
       });
-      triggerModal(false);
+      closeModal();
     },
   });
 };
@@ -78,7 +78,7 @@ export const useCourseGroupDetailsApi = (params) => {
 
 export const useCourseReserveDetailsApi = (CourseId) => {
   return useQuery({
-    queryKey: ["CourseReserveDetails"],
+    queryKey: ["CourseReserveDetails", CourseId],
     queryFn: () => courseReserveDetailsApi(CourseId).then((data) => data.data),
   });
 };

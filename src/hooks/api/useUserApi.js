@@ -30,7 +30,7 @@ export const useCreateUserApi = (reset) => {
   });
 };
 
-export const useDeleteUserApi = (triggerModal) => {
+export const useDeleteUserApi = (closeModal) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -40,12 +40,12 @@ export const useDeleteUserApi = (triggerModal) => {
       queryClient.invalidateQueries({
         queryKey: ["userList"],
       });
-      triggerModal(false);
+      closeModal();
     },
   });
 };
 
-export const useUpdateUserApi = (triggerModal) => {
+export const useUpdateUserApi = (closeModal) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -55,7 +55,7 @@ export const useUpdateUserApi = (triggerModal) => {
       queryClient.invalidateQueries({
         queryKey: ["userList"],
       });
-      triggerModal(false);
+      closeModal();
     },
   });
 };

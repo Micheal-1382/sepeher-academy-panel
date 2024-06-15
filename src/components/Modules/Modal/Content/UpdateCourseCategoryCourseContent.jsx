@@ -4,7 +4,7 @@ import MainButton from "../../Button/MainButton";
 
 export const UpdateBody = ({
   defaultValues,
-  triggerModal,
+  closeModal,
   action,
   actionLoading,
 }) => {
@@ -89,7 +89,7 @@ export const UpdateBody = ({
         <MainButton
           content={"بازگشت"}
           className={"!bg-primary text-btnText font-peyda"}
-          onClick={() => triggerModal(false)}
+          onClick={closeModal}
         />
         <MainButton
           content={"بروزرسانی"}

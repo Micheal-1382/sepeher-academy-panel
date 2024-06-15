@@ -10,7 +10,7 @@ import { parseDate } from "@internationalized/date";
 import trashIcon from "../../../../assets/icons/outlined/trash.svg";
 import MainTooltip from "../../MainTooltip/MainTooltip";
 
-export const UpdateBody = ({ userId, triggerModal, action, actionLoading }) => {
+export const UpdateBody = ({ userId, closeModal, action, actionLoading }) => {
   const {
     register,
     handleSubmit,
@@ -452,7 +452,7 @@ export const UpdateBody = ({ userId, triggerModal, action, actionLoading }) => {
         <MainButton
           content={"بازگشت"}
           className={"!bg-primary text-btnText font-peyda"}
-          onClick={() => triggerModal(false)}
+          onClick={closeModal}
         />
         <MainButton
           content={"بروزرسانی"}
