@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import PrimaryInput from "../../Modules/Input/PrimaryInput";
 import { combinedEmailAndPhoneRegex } from "../../../utils/combinedEmailAndPhoneRegex";
 import { Controller, useForm } from "react-hook-form";
 import { Checkbox } from "@nextui-org/react";
 import MainButton from "../../Modules/Button/MainButton";
 import { useLoginUserApi } from "../../../hooks/api/useAuthApi";
+import eyeIcon from "../../../assets/icons/outlined/eye.svg";
+import eyeSlashIcon from "../../../assets/icons/outlined/eyeSlash.svg";
 
 export default function LoginForm() {
   const {
@@ -13,6 +15,8 @@ export default function LoginForm() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const { mutate, isPending } = useLoginUserApi();
 
@@ -48,12 +52,29 @@ export default function LoginForm() {
         label={"رمزعبور"}
         variant="faded"
         className="font-peyda"
-        type="password"
+        type={isPasswordVisible ? "text" : "password"}
         register={{
           ...register("password", {
             required: "رمزعبورت رو نمیتونی خالی بذاری",
           }),
         }}
+        endContent={
+          <div className="w-[25px] cursor-pointer">
+            {isPasswordVisible ? (
+              <img
+                alt=""
+                src={eyeSlashIcon}
+                onClick={() => setIsPasswordVisible(false)}
+              />
+            ) : (
+              <img
+                alt=""
+                src={eyeIcon}
+                onClick={() => setIsPasswordVisible(true)}
+              />
+            )}
+          </div>
+        }
         isInvalid={Boolean(errors.password)}
         errorMessage={errors.password?.message}
       />

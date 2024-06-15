@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useCreateUserApi } from "../../../hooks/api/useUserApi";
 import PrimaryInput from "../../Modules/Input/PrimaryInput";
 import MainButton from "../../Modules/Button/MainButton";
 import { Switch } from "@nextui-org/react";
+import eyeIcon from "../../../assets/icons/outlined/eye.svg";
+import eyeSlashIcon from "../../../assets/icons/outlined/eyeSlash.svg";
 
 export default function AddUserForm() {
   const {
@@ -15,6 +17,8 @@ export default function AddUserForm() {
   } = useForm();
 
   const { mutate, isPending } = useCreateUserApi(reset);
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const submitFormHandler = (data) => {
     mutate(data);
@@ -80,7 +84,24 @@ export default function AddUserForm() {
             }),
           }}
           isInvalid={Boolean(errors.password?.message)}
-          type="password"
+          type={isPasswordVisible ? "text" : "password"}
+          endContent={
+            <div className="w-[25px] cursor-pointer">
+              {isPasswordVisible ? (
+                <img
+                  alt=""
+                  src={eyeSlashIcon}
+                  onClick={() => setIsPasswordVisible(false)}
+                />
+              ) : (
+                <img
+                  alt=""
+                  src={eyeIcon}
+                  onClick={() => setIsPasswordVisible(true)}
+                />
+              )}
+            </div>
+          }
           errorMessage={errors.password?.message}
         />
         <PrimaryInput

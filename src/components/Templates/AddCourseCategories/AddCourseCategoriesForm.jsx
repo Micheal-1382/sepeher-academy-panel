@@ -26,6 +26,7 @@ export default function AddCourseCategoriesForm() {
       <PrimaryInput
         placeholder={"نام گروه"}
         className={"font-peyda"}
+        label={"نام گروه"}
         register={{
           ...register("GroupName", {
             required: "نام گروه نمی تواند خالی باشد",
@@ -37,6 +38,7 @@ export default function AddCourseCategoriesForm() {
       <PrimaryInput
         placeholder={"شناسه دوره"}
         className={"font-peyda"}
+        label={"شناسه دوره"}
         register={{
           ...register("CourseId", {
             required: "شناسه دوره نمی تواند خالی باشد",
@@ -48,6 +50,7 @@ export default function AddCourseCategoriesForm() {
       <PrimaryInput
         placeholder={"ظرفیت گروه"}
         className={"font-peyda"}
+        label={"ظرفیت گروه"}
         register={{
           ...register("GroupCapacity", {
             required: "ظرفیت گروه نمی تواند خالی باشد",

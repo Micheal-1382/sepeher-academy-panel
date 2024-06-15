@@ -18,7 +18,7 @@ import { revokeTokenAndRoles } from "../../../utils/revokeToken";
 export default function AccountPopover() {
   const logoutUserHandler = () => {
     revokeTokenAndRoles();
-    window.location.reload();
+    window.location.replace("/login");
   };
   return (
     <Popover offset={15} placement="bottom-start" backdrop={"blur"}>
