@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import { useAdminNewsFilterListApi } from "../../../hooks/api/useNewsApi";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
-import { Chip, Image } from "@nextui-org/react";
+import { Chip, Image, useDisclosure } from "@nextui-org/react";
 import eyeIcon from "../../../assets/icons/outlined/eye.svg";
 import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
@@ -12,6 +12,8 @@ import MainTable from "../../Modules/Table/MainTable";
 import { sortTypeItems } from "../../../constants/sortTypeItems";
 import courseSortingColItems from "../../../constants/courseSortingColItems";
 import { convertToPersianDate } from "../../../utils/convertToPersianDate";
+import MainModal from "../../Modules/Modal/MainModal";
+import { DeleteNewsBody } from "../../Modules/Modal/Content/DeleteNewsContent";
 
 const columns = [
   { name: "عنوان", uid: "title" },
@@ -31,8 +33,17 @@ export default function NewsList() {
 
   const { data, isLoading } = useAdminNewsFilterListApi(queryParams);
 
-  const renderCell = useCallback((course, columnKey) => {
-    const cellValue = course[columnKey];
+  const {
+    isOpen: isDeleteModalOpen,
+    onOpenChange: onOpenChangeDeleteModal,
+    onClose: onCloseDeleteModal,
+    onOpen: onOpenDeleteModal,
+  } = useDisclosure();
+
+  const selectedNewsData = useRef();
+
+  const renderCell = useCallback((news, columnKey) => {
+    const cellValue = news[columnKey];
 
     switch (columnKey) {
       case "title":
@@ -64,7 +75,16 @@ export default function NewsList() {
               <Image alt="" src={editIcon} width={20} />
             </MainTooltip>
             <MainTooltip color="danger" content="حذف">
-              <Image alt="" src={trashIcon} width={20} />
+              <Image
+                alt=""
+                src={trashIcon}
+                className="cursor-pointer"
+                width={20}
+                onClick={() => {
+                  selectedNewsData.current = news.id;
+                  onOpenDeleteModal();
+                }}
+              />
             </MainTooltip>
           </div>
         );
@@ -85,6 +105,16 @@ export default function NewsList() {
         renderCell={renderCell}
         isLoading={isLoading}
         totalCount={data?.totalCount ?? 0}
+      />
+      <MainModal
+        isOpen={isDeleteModalOpen}
+        onOpenChange={onOpenChangeDeleteModal}
+        body={
+          <DeleteNewsBody
+            fileId={selectedNewsData.current}
+            closeModal={onCloseDeleteModal}
+          />
+        }
       />
     </div>
   );

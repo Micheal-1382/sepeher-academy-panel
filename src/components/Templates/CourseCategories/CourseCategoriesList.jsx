@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import {
   useCourseGroupApi,
-  useDeleteCourseGroupApi,
   useUpdateCourseGroupApi,
 } from "../../../hooks/api/useCoursesApi";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
@@ -50,11 +49,6 @@ export default function CourseCategoriesList() {
   } = useDisclosure();
 
   const { data, isLoading } = useCourseGroupApi(queryParams);
-
-  const {
-    mutate: deleteCourseCategoryMutate,
-    isPending: deleteCourseCategoryPending,
-  } = useDeleteCourseGroupApi(onCloseDeleteModal);
 
   const {
     mutate: updateCourseCategoryMutate,
@@ -140,11 +134,8 @@ export default function CourseCategoriesList() {
         onOpenChange={onOpenChangeDeleteModal}
         body={
           <DeleteBody
+            id={selectedCourseCategoryData.current}
             closeModal={onCloseDeleteModal}
-            action={() =>
-              deleteCourseCategoryMutate(selectedCourseCategoryData.current)
-            }
-            actionLoading={deleteCourseCategoryPending}
           />
         }
       />

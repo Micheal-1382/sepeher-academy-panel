@@ -26,6 +26,7 @@ export default function AddUserForm() {
         <PrimaryInput
           placeholder={"نام"}
           className={"font-peyda"}
+          label={"نام"}
           register={{
             ...register("firstName", {
               required: "نام نمی تواند خالی باشد",
@@ -36,6 +37,7 @@ export default function AddUserForm() {
         />
         <PrimaryInput
           placeholder={"نام خانوادگی"}
+          label={"نام خانوادگی"}
           className={"font-peyda"}
           register={{
             ...register("lastName", {
@@ -47,6 +49,7 @@ export default function AddUserForm() {
         />
         <PrimaryInput
           placeholder={"شماره موبایل"}
+          label={"شماره موبایل"}
           className={"font-peyda"}
           register={{
             ...register("phoneNumber", {
@@ -65,6 +68,7 @@ export default function AddUserForm() {
         <PrimaryInput
           placeholder={"رمز عبور"}
           className={"font-peyda"}
+          label={"رمز عبور"}
           register={{
             ...register("password", {
               required: "رمز عبور نمی تواند خالی باشد",
@@ -82,6 +86,7 @@ export default function AddUserForm() {
         <PrimaryInput
           placeholder={"ایمیل"}
           className={"font-peyda"}
+          label={"ایمیل"}
           register={{
             ...register("gmail", {
               required: "ایمیل نمی تواند خالی باشد",
