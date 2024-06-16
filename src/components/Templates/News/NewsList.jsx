@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import { useAdminNewsFilterListApi } from "../../../hooks/api/useNewsApi";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
@@ -28,6 +28,8 @@ const columns = [
 export default function NewsList() {
   const location = useLocation();
   const { search } = location;
+
+  const navigate = useNavigate();
 
   const queryParams = getQueryParams(search);
 
@@ -69,7 +71,13 @@ export default function NewsList() {
         return (
           <div className="relative flex !items-center gap-2">
             <MainTooltip content="جزئیات">
-              <Image alt="" src={eyeIcon} width={20} />
+              <Image
+                alt=""
+                src={eyeIcon}
+                className="cursor-pointer"
+                width={20}
+                onClick={() => navigate(`${news.id}`)}
+              />
             </MainTooltip>
             <MainTooltip content="ویرایش">
               <Image alt="" src={editIcon} width={20} />

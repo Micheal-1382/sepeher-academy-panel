@@ -2,6 +2,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   adminNewsFilterListApi,
   deleteNewsFileApi,
+  getAdminNewsCommentsApi,
+  getAdminRepliesCommentsApi,
 } from "../../services/newsApi";
 import { toast } from "react-toastify";
 
@@ -24,5 +26,19 @@ export const useDeleteNewsFileApi = (closeModal) => {
       });
       closeModal();
     },
+  });
+};
+
+export const useGetAdminNewsCommentsApi = (params) => {
+  return useQuery({
+    queryKey: ["GetAdminNewsComments", params],
+    queryFn: () => getAdminNewsCommentsApi(params).then((data) => data.data),
+  });
+};
+
+export const useGetAdminRepliesCommentsApi = (params) => {
+  return useQuery({
+    queryKey: ["GetAdminRepliesComments", params],
+    queryFn: () => getAdminRepliesCommentsApi(params).then((data) => data.data),
   });
 };

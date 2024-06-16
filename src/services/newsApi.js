@@ -9,3 +9,11 @@ export const adminNewsFilterListApi = (params) => {
 export const deleteNewsFileApi = (params) => {
   return httpService.delete(baseUrl + `News/DeleteNewsFile`, { params });
 };
+
+export const getAdminNewsCommentsApi = (params) => {
+  return httpService.get(baseUrl + `News/GetAdminNewsComments`, { params });
+};
+
+export const getAdminRepliesCommentsApi = (params) => {
+  return httpService.get(baseUrl + `News/GetAdminRepliesComments`, { params });
+};
