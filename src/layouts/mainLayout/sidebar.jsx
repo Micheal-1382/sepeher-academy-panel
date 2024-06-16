@@ -36,6 +36,15 @@ const Sidebar = () => {
             </Link>
             <Link
               className={"sidebar-link !flex gap-1 items-center mb-1"}
+              to={"course-reserves"}
+            >
+              <Image alt="" src={coursesIcon} />
+              <span className="!text-lightBody dark:!text-darkBody">
+                دانشجویان رزرو شده
+              </span>
+            </Link>
+            <Link
+              className={"sidebar-link !flex gap-1 items-center mb-1"}
               to={"course-categories"}
             >
               <Image alt="" src={coursesIcon} />
