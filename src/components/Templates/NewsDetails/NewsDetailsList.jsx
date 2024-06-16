@@ -7,7 +7,7 @@ import infoIcon from "../../../assets/icons/theme/info.svg";
 import { useDisclosure } from "@nextui-org/react";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
 import MainModal from "../../Modules/Modal/MainModal";
-import NewCommentRepliesContent from "../../Modules/Modal/Content/NewCommentRepliesContent";
+import NewsCommentRepliesContent from "../../Modules/Modal/Content/NewCommentRepliesContent";
 
 const columns = [
   { name: "عنوان", uid: "title" },
@@ -90,7 +90,7 @@ export default function NewsDetailsList() {
         onOpenChange={onOpenChangeRepliesModal}
         size="3xl"
         body={
-          <NewCommentRepliesContent CommentId={selectedCommentData.current} />
+          <NewsCommentRepliesContent CommentId={selectedCommentData.current} />
         }
       />
     </>

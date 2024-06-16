@@ -13,7 +13,7 @@ const columns = [
   { name: "تعداد دیسلایک ها", uid: "dissLikeCount" },
 ];
 
-export default function NewCommentRepliesContent({ CommentId }) {
+export default function NewsCommentRepliesContent({ CommentId }) {
   const { data, isLoading } = useGetAdminRepliesCommentsApi({ CommentId });
 
   const renderCell = useCallback((comment, columnKey) => {
