@@ -3,7 +3,7 @@ import AddNewsCategoryForm from "../../components/Templates/AddNewsCategory/AddN
 
 export default function AddNewsCategoryPage() {
   return (
-    <div>
+    <div className="bg-white p-4 rounded-2xl">
       <h3 className="mb-4 font-peyda text-2xl">افزودن دسته بندی خبر</h3>
       <AddNewsCategoryForm />
     </div>
