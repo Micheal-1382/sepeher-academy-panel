@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   adminNewsFilterListApi,
+  createNewsCategoryApi,
   deleteNewsFileApi,
   getAdminNewsCommentsApi,
   getAdminRepliesCommentsApi,
@@ -40,5 +41,15 @@ export const useGetAdminRepliesCommentsApi = (params) => {
   return useQuery({
     queryKey: ["GetAdminRepliesComments", params],
     queryFn: () => getAdminRepliesCommentsApi(params).then((data) => data.data),
+  });
+};
+
+export const useCreateNewsCategoryApi = (reset) => {
+  return useMutation({
+    mutationFn: (payload) => createNewsCategoryApi(payload),
+    onSuccess: () => {
+      toast.success("دسته بندی جدید با موفقیت ساخته شد");
+      reset();
+    },
   });
 };

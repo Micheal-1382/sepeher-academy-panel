@@ -14,6 +14,7 @@ import UsersPage from "./pages/users";
 import AddUserPage from "./pages/add-user";
 import CategoryDetailsPage from "./pages/courses-categories/[id]";
 import NewsDetailsPage from "./pages/news/[NewsId]";
+import AddNewsCategoryPage from "./pages/add-news-categories";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "news",
         element: <NewsPage />,
+      },
+      {
+        path: "add-news-categories",
+        element: <AddNewsCategoryPage />,
       },
       {
         path: "news/:NewsId",

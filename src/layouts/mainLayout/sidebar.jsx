@@ -66,6 +66,15 @@ const Sidebar = () => {
                 همه اخبار
               </span>
             </Link>
+            <Link
+              className={"sidebar-link !flex gap-1 items-center mb-1"}
+              to={"add-news-categories"}
+            >
+              <img alt="" src={plusIcon} className="w-[20px]" />
+              <span className="!text-lightBody dark:!text-darkBody">
+                افزودن دسته بندی
+              </span>
+            </Link>
           </li>
           <li>
             <Link

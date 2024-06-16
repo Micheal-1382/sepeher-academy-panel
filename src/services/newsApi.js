@@ -17,3 +17,11 @@ export const getAdminNewsCommentsApi = (params) => {
 export const getAdminRepliesCommentsApi = (params) => {
   return httpService.get(baseUrl + `News/GetAdminRepliesComments`, { params });
 };
+
+export const createNewsCategoryApi = (payload) => {
+  return httpService.post(baseUrl + `News/CreateNewsCategory`, payload, {
+    headers: {
+      useMultipartForm: true,
+    },
+  });
+};
