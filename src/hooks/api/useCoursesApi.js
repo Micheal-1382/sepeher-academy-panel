@@ -1,12 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   addCourseGroupApi,
+  courseDetailsApi,
   courseGroupApi,
   courseGroupDetailsApi,
   courseListApi,
   courseReserveApi,
   courseReserveDetailsApi,
   deleteCourseGroupApi,
+  deleteCourseReserveApi,
   updateCourseGroupApi,
 } from "../../services/coursesApi";
 import { toast } from "react-toastify";
@@ -88,5 +90,27 @@ export const useCourseReserveApi = () => {
   return useQuery({
     queryKey: ["CourseReserve"],
     queryFn: () => courseReserveApi().then((data) => data.data),
+  });
+};
+
+export const useDeleteCourseReserveApi = (closeModal) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id) => deleteCourseReserveApi(id),
+    onSuccess: () => {
+      toast.success("دانشجو رزرو شده با موفقیت حذف شد");
+      queryClient.invalidateQueries({
+        queryKey: ["CourseReserve"],
+      });
+      closeModal();
+    },
+  });
+};
+
+export const useCourseDetailsApi = (id) => {
+  return useQuery({
+    queryKey: ["CourseDetails", id],
+    queryFn: () => courseDetailsApi(id).then((data) => data.data),
   });
 };

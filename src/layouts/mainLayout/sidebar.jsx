@@ -27,7 +27,7 @@ const Sidebar = () => {
           <li>
             <Link
               className={"sidebar-link !flex gap-1 items-center mb-1"}
-              to={"/"}
+              to={"courses"}
             >
               <Image alt="" src={coursesIcon} />
               <span className="!text-lightBody dark:!text-darkBody">

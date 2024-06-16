@@ -48,3 +48,15 @@ export const courseReserveDetailsApi = (CourseId) => {
 export const courseReserveApi = () => {
   return httpService.get(baseUrl + `CourseReserve`);
 };
+
+export const deleteCourseReserveApi = (id) => {
+  return httpService.delete(baseUrl + `CourseReserve`, {
+    data: {
+      id,
+    },
+  });
+};
+
+export const courseDetailsApi = (id)=>{
+  return httpService.get(baseUrl+`Course/${id}`)
+}

@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import MainTable from "../../Modules/Table/MainTable";
 import { useCourseListApi } from "../../../hooks/api/useCoursesApi";
@@ -30,6 +30,7 @@ const columns = [
 export default function CoursesList() {
   const location = useLocation();
   const { search } = location;
+  const navigate = useNavigate();
 
   const queryParams = getQueryParams(search);
 
@@ -88,7 +89,15 @@ export default function CoursesList() {
         return (
           <div className="relative flex !items-center gap-2">
             <MainTooltip content="جزئیات">
-              <Image alt="" src={eyeIcon} width={20} />
+              <Image
+                alt=""
+                src={eyeIcon}
+                width={20}
+                className="cursor-pointer"
+                onClick={() => {
+                  navigate(`${course.courseId}`);
+                }}
+              />
             </MainTooltip>
             <MainTooltip content="ویرایش">
               <Image alt="" src={editIcon} width={20} />

@@ -16,6 +16,7 @@ import CategoryDetailsPage from "./pages/courses-categories/[id]";
 import NewsDetailsPage from "./pages/news/[NewsId]";
 import AddNewsCategoryPage from "./pages/add-news-categories";
 import CourseReservesPage from "./pages/course-reserves";
+import CourseDetailsPage from "./pages/courses/[id]";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
     // errorElement: <UnhandledException />,
     children: [
       {
-        index: true,
+        path: "courses",
         element: <CoursesPage />,
       },
       {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: "courses/:id",
-        element: <></>,
+        element: <CourseDetailsPage />,
       },
       {
         path: "comments",
