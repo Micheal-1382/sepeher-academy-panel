@@ -81,6 +81,10 @@ export const updateCourseStatusApi = (payload) => {
   });
 };
 
-export const courseStatusApi = ()=>{
-  return httpService.get(baseUrl+`Status`)
-}
+export const courseStatusApi = () => {
+  return httpService.get(baseUrl + `Status`);
+};
+
+export const getCourseUserListApi = (params) => {
+  return httpService.get(baseUrl + `CourseUser/GetCourseUserList`, { params });
+};

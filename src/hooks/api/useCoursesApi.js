@@ -12,6 +12,7 @@ import {
   deleteCourseApi,
   deleteCourseGroupApi,
   deleteCourseReserveApi,
+  getCourseUserListApi,
   updateCourseGroupApi,
   updateCourseStatusApi,
 } from "../../services/coursesApi";
@@ -168,5 +169,12 @@ export const useCourseStatusApi = () => {
   return useQuery({
     queryKey: ["courseStatus"],
     queryFn: () => courseStatusApi().then((data) => data.data),
+  });
+};
+
+export const useGetCourseUserListApi = (params) => {
+  return useQuery({
+    queryKey: ["CourseUserList", params],
+    queryFn: () => getCourseUserListApi(params).then((data) => data.data),
   });
 };
