@@ -20,6 +20,7 @@ import { checkUserRoles } from "../../../utils/checkUserRoles";
 import MainModal from "../../Modules/Modal/MainModal";
 import AcceptCommentContent from "../../Modules/Modal/Content/AcceptCommentContent";
 import RejectCommentContent from "../../Modules/Modal/Content/RejectCommentContent";
+import DeleteCommentContent from "../../Modules/Modal/Content/DeleteCommentContent";
 
 const columns = [
   { name: "نام کاربر", uid: "userFullName" },
@@ -50,6 +51,13 @@ export default function CommentsList() {
     onOpen: onOpenRejectModal,
     onOpenChange: onOpenChangeRejectModal,
     onClose: onCloseRejectModal,
+  } = useDisclosure();
+
+  const {
+    isOpen: isDeleteModalOpen,
+    onOpen: onOpenDeleteModal,
+    onOpenChange: onOpenChangeDeleteModal,
+    onClose: onCloseDeleteModal,
   } = useDisclosure();
 
   const { data: commentsListForAdmin, isLoading: commentsListForAdminLoading } =
@@ -144,7 +152,16 @@ export default function CommentsList() {
               <Image alt="" src={editIcon} width={20} />
             </MainTooltip>
             <MainTooltip color="danger" content="حذف">
-              <Image alt="" src={trashIcon} width={20} />
+              <Image
+                alt=""
+                src={trashIcon}
+                className="cursor-pointer"
+                width={20}
+                onClick={() => {
+                  selectedCommentId.current = comment.commentId;
+                  onOpenDeleteModal();
+                }}
+              />
             </MainTooltip>
           </div>
         );
@@ -183,6 +200,16 @@ export default function CommentsList() {
           <RejectCommentContent
             closeModal={onCloseRejectModal}
             CommentCourseId={selectedCommentId.current}
+          />
+        }
+      />
+      <MainModal
+        isOpen={isDeleteModalOpen}
+        onOpenChange={onOpenChangeDeleteModal}
+        body={
+          <DeleteCommentContent
+            closeModal={onCloseDeleteModal}
+            CourseCommandId={selectedCommentId.current}
           />
         }
       />

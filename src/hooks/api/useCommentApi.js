@@ -3,6 +3,7 @@ import {
   acceptCourseCommentApi,
   commentListApi,
   commentManagmentTeacherApi,
+  deleteCourseCommentApi,
   rejectCourseCommentApi,
 } from "../../services/commentApi";
 import { toast } from "react-toastify";
@@ -61,6 +62,28 @@ export const useRejectCourseCommentApi = (closeModal, isAdmin) => {
       }
       toast.success("کامنت موردنظر با موفقیت رد شد");
       closeModal();
+    },
+  });
+};
+
+export const useDeleteCourseCommentApi = (closeModal, isAdmin) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (CourseCommandId) => deleteCourseCommentApi(CourseCommandId),
+    onSuccess: () => {
+      toast.success("کامنت موردنظر با موفقیت حذف شد");
+      closeModal();
+
+      if (isAdmin) {
+        queryClient.invalidateQueries({
+          queryKey: ["commentList"],
+        });
+      } else {
+        queryClient.invalidateQueries({
+          queryKey: ["CommentManagmentTeacher"],
+        });
+      }
     },
   });
 };

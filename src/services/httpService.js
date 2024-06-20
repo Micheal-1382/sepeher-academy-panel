@@ -39,7 +39,7 @@ axios.interceptors.response.use(
 
     switch (error?.response?.status) {
       case 400: {
-        toast.error(error?.response?.data.ErrorMessage);
+        toast.error(error?.response?.data.ErrorMessage[0]);
         break;
       }
       case 403: {

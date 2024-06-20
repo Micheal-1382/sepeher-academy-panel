@@ -23,3 +23,9 @@ export const rejectCourseCommentApi = (CommentCourseId) => {
     baseUrl + `Course/RejectCourseComment?CommentCourseId=${CommentCourseId}`
   );
 };
+
+export const deleteCourseCommentApi = (CourseCommandId) => {
+  return httpService.delete(
+    baseUrl + `Course/DeleteCourseComment?CourseCommandId=${CourseCommandId}`
+  );
+};
