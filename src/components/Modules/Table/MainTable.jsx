@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useId, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import { convertQueryParamsToString } from "../../../utils/convertQueryParamsToString";
@@ -107,13 +107,16 @@ export default function MainTable({
           items={data}
           emptyContent={"هیچ رکوردی یافت نشد"}
         >
-          {(item) => (
-            <TableRow key={item.courseId}>
-              {(columnKey) => (
-                <TableCell>{renderCell(item, columnKey)}</TableCell>
-              )}
-            </TableRow>
-          )}
+          {(item) => {
+            const index = crypto.randomUUID();
+            return (
+              <TableRow key={index}>
+                {(columnKey) => (
+                  <TableCell>{renderCell(item, columnKey)}</TableCell>
+                )}
+              </TableRow>
+            );
+          }}
         </TableBody>
       </Table>
     </div>

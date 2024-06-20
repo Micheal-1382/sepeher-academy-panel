@@ -1,11 +1,6 @@
-import Cookies from "js-cookie";
+import { checkUserRoles } from "../utils/checkUserRoles";
 
 export const sidebarItems = () => {
-  const roles = Cookies.get("roles").split(",");
-
-  const isAdmin = roles.includes("Administrator");
-  const isTeacher = roles.includes("Teacher");
-
   const items = [
     {
       name: "مدیریت دوره ها",
@@ -73,7 +68,7 @@ export const sidebarItems = () => {
           href: "comments",
           access: {
             ADMIN: true,
-            TEACHER: false,
+            TEACHER: true,
           },
         },
       ],
@@ -104,9 +99,9 @@ export const sidebarItems = () => {
   return items
     .map((item) => {
       const filteredChildren = item.children.filter((child) => {
-        if (isAdmin) {
+        if (checkUserRoles().isAdmin) {
           return true;
-        } else if (isTeacher) {
+        } else if (checkUserRoles().isTeacher) {
           return child.access.TEACHER;
         }
         return false;
