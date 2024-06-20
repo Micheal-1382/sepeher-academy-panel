@@ -57,6 +57,10 @@ export const deleteCourseReserveApi = (id) => {
   });
 };
 
-export const courseDetailsApi = (id)=>{
-  return httpService.get(baseUrl+`Course/${id}`)
-}
+export const courseDetailsApi = (id) => {
+  return httpService.get(baseUrl + `Course/${id}`);
+};
+
+export const activeAndDeactiveCourseApi = (payload) => {
+  return httpService.put(baseUrl + `Course/ActiveAndDeactiveCourse`, payload);
+};

@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
+  activeAndDeactiveCourseApi,
   addCourseGroupApi,
   courseDetailsApi,
   courseGroupApi,
@@ -112,5 +113,20 @@ export const useCourseDetailsApi = (id) => {
   return useQuery({
     queryKey: ["CourseDetails", id],
     queryFn: () => courseDetailsApi(id).then((data) => data.data),
+  });
+};
+
+export const useActiveAndDeactiveCourseApi = (closeModal) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload) => activeAndDeactiveCourseApi(payload),
+    onSuccess: (res) => {
+      // toast.success("دوره موردنظر با موفقیت ")
+      closeModal();
+      queryClient.invalidateQueries({
+        queryKey: ["courseList"],
+      });
+    },
   });
 };

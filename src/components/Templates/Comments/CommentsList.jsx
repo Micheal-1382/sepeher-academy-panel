@@ -28,8 +28,6 @@ const columns = [
   { name: "توضیحات", uid: "describe" },
   { name: "تعداد ریپلای", uid: "replyCount" },
   { name: "وضعیت", uid: "accept" },
-  // { name: "تعداد لایک", uid: "likeCount" },
-  // { name: "تعداد دیس لایک", uid: "dislikeCount" },
   { name: "عملیات", uid: "actions" },
 ];
 
@@ -69,7 +67,7 @@ export default function CommentsList() {
   const selectedCommentId = useRef();
 
   const handleData = () => {
-    switch (checkUserRoles().isAdmin) {
+    switch (Boolean(checkUserRoles().isAdmin)) {
       case true:
         return {
           data: commentsListForAdmin?.comments ?? [],
@@ -95,10 +93,6 @@ export default function CommentsList() {
         return <p className="font-peyda">{cellValue}</p>;
       case "describe":
         return <p className="font-peyda">{cellValue}</p>;
-      // case "likeCount":
-      //   return <p className="font-peyda">{cellValue}</p>;
-      // case "dislikeCount":
-      //   return <p className="font-peyda">{cellValue}</p>;
       case "userFullName":
         return <p className="font-peyda">{cellValue}</p>;
       case "replyCount":
