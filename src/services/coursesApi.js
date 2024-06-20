@@ -72,3 +72,15 @@ export const deleteCourseApi = (payload) => {
     },
   });
 };
+
+export const updateCourseStatusApi = (payload) => {
+  return httpService.put(baseUrl + `Course/UpdateCourseStatus`, payload, {
+    headers: {
+      useMultipartForm: true,
+    },
+  });
+};
+
+export const courseStatusApi = ()=>{
+  return httpService.get(baseUrl+`Status`)
+}

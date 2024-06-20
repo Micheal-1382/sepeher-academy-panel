@@ -21,6 +21,7 @@ import { CourseReserveBody } from "../../Modules/Modal/Content/CourseReserveStud
 import ActiveCourseContent from "../../Modules/Modal/Content/ActiveCourseContent";
 import DeActiveCourseContent from "../../Modules/Modal/Content/DeActiveCourseContent";
 import DeleteCourseContent from "../../Modules/Modal/Content/DeleteCourseContent";
+import UpdateCourseStatusContent from "../../Modules/Modal/Content/UpdateCourseStatusContent";
 
 const columns = [
   { name: "نام دوره", uid: "fullName" },
@@ -70,6 +71,13 @@ export default function CoursesList() {
     onClose: onCloseDeleteCourseModal,
   } = useDisclosure();
 
+  const {
+    isOpen: isUpdateStatusModalOpen,
+    onOpenChange: onOpenChangeUpdateStatusModal,
+    onOpen: onOpenUpdateStatusModal,
+    onClose: onCloseUpdateStatusModal,
+  } = useDisclosure();
+
   const renderCell = useCallback((course, columnKey) => {
     const cellValue = course[columnKey];
 
@@ -102,7 +110,28 @@ export default function CoursesList() {
           </div>
         );
       case "statusName":
-        return <p className="font-peyda">{cellValue}</p>;
+        return (
+          <div className="font-peyda flex items-center gap-1">
+            <p className="pt-1">{cellValue}</p>
+            <MainTooltip
+              content={
+                <p className="!text-primary cursor-pointer font-peyda">
+                  ویرایش وضعیت دوره
+                </p>
+              }
+            >
+              <img
+                src={infoIcon}
+                alt=""
+                className="w-[20px] cursor-pointer"
+                onClick={() => {
+                  selectedCourseId.current = course.courseId;
+                  onOpenUpdateStatusModal();
+                }}
+              />
+            </MainTooltip>
+          </div>
+        );
       case "cost":
         return (
           <p className="font-peyda">
@@ -230,6 +259,17 @@ export default function CoursesList() {
           <DeleteCourseContent
             closeModal={onCloseDeleteCourseModal}
             payload={selectedCourseId.current}
+          />
+        }
+      />
+      <MainModal
+        isOpen={isUpdateStatusModalOpen}
+        onOpenChange={onOpenChangeUpdateStatusModal}
+        size="2xl"
+        body={
+          <UpdateCourseStatusContent
+            closeModal={onCloseUpdateStatusModal}
+            CourseId={selectedCourseId.current}
           />
         }
       />

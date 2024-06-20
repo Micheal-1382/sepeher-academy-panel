@@ -8,10 +8,12 @@ import {
   courseListApi,
   courseReserveApi,
   courseReserveDetailsApi,
+  courseStatusApi,
   deleteCourseApi,
   deleteCourseGroupApi,
   deleteCourseReserveApi,
   updateCourseGroupApi,
+  updateCourseStatusApi,
 } from "../../services/coursesApi";
 import { toast } from "react-toastify";
 
@@ -144,5 +146,27 @@ export const useDeleteCourseApi = (closeModal) => {
         queryKey: ["courseList"],
       });
     },
+  });
+};
+
+export const useUpdateCourseStatusApi = (closeModal) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload) => updateCourseStatusApi(payload),
+    onSuccess: () => {
+      toast.success("وضعیت دوره موردنظر با موفقیت بروزرسانی شد");
+      closeModal();
+      queryClient.invalidateQueries({
+        queryKey: ["courseList"],
+      });
+    },
+  });
+};
+
+export const useCourseStatusApi = () => {
+  return useQuery({
+    queryKey: ["courseStatus"],
+    queryFn: () => courseStatusApi().then((data) => data.data),
   });
 };
