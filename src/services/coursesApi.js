@@ -64,3 +64,11 @@ export const courseDetailsApi = (id) => {
 export const activeAndDeactiveCourseApi = (payload) => {
   return httpService.put(baseUrl + `Course/ActiveAndDeactiveCourse`, payload);
 };
+
+export const deleteCourseApi = (payload) => {
+  return httpService.delete(baseUrl + `Course/DeleteCourse`, {
+    data: {
+      ...payload,
+    },
+  });
+};

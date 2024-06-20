@@ -8,6 +8,7 @@ import {
   courseListApi,
   courseReserveApi,
   courseReserveDetailsApi,
+  deleteCourseApi,
   deleteCourseGroupApi,
   deleteCourseReserveApi,
   updateCourseGroupApi,
@@ -121,8 +122,23 @@ export const useActiveAndDeactiveCourseApi = (closeModal) => {
 
   return useMutation({
     mutationFn: (payload) => activeAndDeactiveCourseApi(payload),
-    onSuccess: (res) => {
-      // toast.success("دوره موردنظر با موفقیت ")
+    onSuccess: () => {
+      toast.success("عملیات با موفقیت انجام شد");
+      closeModal();
+      queryClient.invalidateQueries({
+        queryKey: ["courseList"],
+      });
+    },
+  });
+};
+
+export const useDeleteCourseApi = (closeModal) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload) => deleteCourseApi(payload),
+    onSuccess: () => {
+      toast.success("دوره موردنظر با موفقیت حذف شد");
       closeModal();
       queryClient.invalidateQueries({
         queryKey: ["courseList"],

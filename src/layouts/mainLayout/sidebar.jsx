@@ -1,6 +1,6 @@
 import logo from "@assets/images/logo.svg";
 import { useAppContext } from "../../contexts/app/app-context";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Image } from "@nextui-org/react";
 import coursesIcon from "../../assets/icons/theme/courses.svg";
 import userIcon from "../../assets/icons/outlined/user.svg";
@@ -11,6 +11,8 @@ import { sidebarItems } from "../../constants/sidebarItems";
 
 const Sidebar = () => {
   const { showSidebar } = useAppContext();
+  const { pathname } = useLocation();
+  
   return (
     <nav
       className={`sidebar ${
@@ -35,7 +37,13 @@ const Sidebar = () => {
                   key={index2}
                 >
                   <Image alt="" src={coursesIcon} />
-                  <span className="!text-lightBody dark:!text-darkBody">
+                  <span
+                    className={`${
+                      pathname.includes(childItem.href)
+                        ? `!text-primary`
+                        : `!text-lightBody`
+                    }`}
+                  >
                     {childItem.name}
                   </span>
                 </Link>

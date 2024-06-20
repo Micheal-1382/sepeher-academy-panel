@@ -20,6 +20,7 @@ import MainModal from "../../Modules/Modal/MainModal";
 import { CourseReserveBody } from "../../Modules/Modal/Content/CourseReserveStudentsContent";
 import ActiveCourseContent from "../../Modules/Modal/Content/ActiveCourseContent";
 import DeActiveCourseContent from "../../Modules/Modal/Content/DeActiveCourseContent";
+import DeleteCourseContent from "../../Modules/Modal/Content/DeleteCourseContent";
 
 const columns = [
   { name: "نام دوره", uid: "fullName" },
@@ -60,6 +61,13 @@ export default function CoursesList() {
     onOpenChange: onOpenChangeDeActiveCourseModal,
     onOpen: onOpenDeActiveCourseModal,
     onClose: onCloseDeActiveCourseModal,
+  } = useDisclosure();
+
+  const {
+    isOpen: isDeleteCourseModalOpen,
+    onOpenChange: onOpenChangeDeleteCourseModal,
+    onOpen: onOpenDeleteCourseModal,
+    onClose: onCloseDeleteCourseModal,
   } = useDisclosure();
 
   const renderCell = useCallback((course, columnKey) => {
@@ -155,7 +163,19 @@ export default function CoursesList() {
               <Image alt="" src={editIcon} width={20} />
             </MainTooltip>
             <MainTooltip color="danger" content="حذف">
-              <Image alt="" src={trashIcon} width={20} />
+              <Image
+                alt=""
+                src={trashIcon}
+                width={20}
+                className="cursor-pointer"
+                onClick={() => {
+                  selectedCourseId.current = {
+                    active: course.isActive,
+                    id: course.courseId,
+                  };
+                  onOpenDeleteCourseModal();
+                }}
+              />
             </MainTooltip>
           </div>
         );
@@ -200,6 +220,16 @@ export default function CoursesList() {
           <DeActiveCourseContent
             closeModal={onCloseDeActiveCourseModal}
             id={selectedCourseId.current}
+          />
+        }
+      />
+      <MainModal
+        isOpen={isDeleteCourseModalOpen}
+        onOpenChange={onOpenChangeDeleteCourseModal}
+        body={
+          <DeleteCourseContent
+            closeModal={onCloseDeleteCourseModal}
+            payload={selectedCourseId.current}
           />
         }
       />
