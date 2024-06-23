@@ -13,7 +13,7 @@ export default function CourseDetailsPage() {
     <div>
       <h3 className="mb-4 font-peyda text-2xl">مشخصات دوره</h3>
       <CourseDetailsBox {...data} isLoading={isLoading} />
-      <h3 className="my-4 font-peyda text-2xl">کاربران دوره</h3>
+      <h3 className="my-4 font-peyda text-2xl">دانشجویان دوره</h3>
       <CourseUsersList />
       <h3 className="my-4 font-peyda text-2xl">دسته بندی های دوره</h3>
       <CourseCategoriesList

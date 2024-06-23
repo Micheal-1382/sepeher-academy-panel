@@ -2,9 +2,6 @@ import React, { useCallback, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import { useGetCourseUserListApi } from "../../../hooks/api/useCoursesApi";
-import HorizontalFilterBox from "../Courses/CoursesFilterBox";
-import { sortTypeItems } from "../../../constants/sortTypeItems";
-import courseSortingColItems from "../../../constants/courseSortingColItems";
 import { convertToPersianDate } from "../../../utils/convertToPersianDate";
 import MainTable from "../../Modules/Table/MainTable";
 import { Chip, useDisclosure } from "@nextui-org/react";
@@ -109,11 +106,6 @@ export default function CourseUsersList() {
   }, []);
   return (
     <div className="space-y-3">
-      <HorizontalFilterBox
-        placeholder={"جستجو"}
-        sortTypeArray={sortTypeItems}
-        sortingColArray={courseSortingColItems}
-      />
       <MainTable
         data={data ?? []}
         columns={columns}

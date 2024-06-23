@@ -5,7 +5,6 @@ import { useAdminNewsFilterListApi } from "../../../hooks/api/useNewsApi";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
 import { Chip, Image, useDisclosure } from "@nextui-org/react";
 import eyeIcon from "../../../assets/icons/outlined/eye.svg";
-import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
 import HorizontalFilterBox from "../Courses/CoursesFilterBox";
 import MainTable from "../../Modules/Table/MainTable";
@@ -78,9 +77,6 @@ export default function NewsList() {
                 width={20}
                 onClick={() => navigate(`${news.id}`)}
               />
-            </MainTooltip>
-            <MainTooltip content="ویرایش">
-              <Image alt="" src={editIcon} width={20} />
             </MainTooltip>
             <MainTooltip color="danger" content="حذف">
               <Image

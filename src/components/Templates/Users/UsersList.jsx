@@ -4,7 +4,6 @@ import { getQueryParams } from "../../../utils/getQueryParams";
 import MainTable from "../../Modules/Table/MainTable";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
 import { Chip, Image, useDisclosure } from "@nextui-org/react";
-import eyeIcon from "../../../assets/icons/outlined/eye.svg";
 import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
 import HorizontalFilterBox from "./UsersFilterBox";
@@ -85,9 +84,6 @@ export default function UsersList() {
       case "actions":
         return (
           <div className="relative flex !items-center gap-2">
-            <MainTooltip content="جزئیات">
-              <Image alt="" src={eyeIcon} width={20} />
-            </MainTooltip>
             <MainTooltip content="ویرایش">
               <Image
                 alt=""

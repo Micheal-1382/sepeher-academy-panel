@@ -90,23 +90,25 @@ export default function CoursesList() {
         return (
           <div className="font-peyda flex items-center gap-1">
             <p className="pt-1">{cellValue}</p>
-            <MainTooltip
-              content={
-                <p className="!text-primary cursor-pointer font-peyda">
-                  مشاهده دانشجویان رزرو شده
-                </p>
-              }
-            >
-              <img
-                src={infoIcon}
-                alt=""
-                className="w-[20px] cursor-pointer"
-                onClick={() => {
-                  selectedCourseId.current = course.courseId;
-                  onOpenCourserReserve();
-                }}
-              />
-            </MainTooltip>
+            {course.reserveCount ? (
+              <MainTooltip
+                content={
+                  <p className="!text-primary cursor-pointer font-peyda">
+                    مشاهده دانشجویان رزرو شده
+                  </p>
+                }
+              >
+                <img
+                  src={infoIcon}
+                  alt=""
+                  className="w-[20px] cursor-pointer"
+                  onClick={() => {
+                    selectedCourseId.current = course.courseId;
+                    onOpenCourserReserve();
+                  }}
+                />
+              </MainTooltip>
+            ) : null}
           </div>
         );
       case "statusName":
@@ -187,9 +189,6 @@ export default function CoursesList() {
                   navigate(`${course.courseId}`);
                 }}
               />
-            </MainTooltip>
-            <MainTooltip content="ویرایش">
-              <Image alt="" src={editIcon} width={20} />
             </MainTooltip>
             <MainTooltip color="danger" content="حذف">
               <Image

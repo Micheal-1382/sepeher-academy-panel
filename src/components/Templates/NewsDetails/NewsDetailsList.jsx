@@ -48,23 +48,25 @@ export default function NewsDetailsList() {
         return (
           <div className="font-peyda flex items-center gap-1">
             <p className="pt-1">{cellValue}</p>
-            <MainTooltip
-              content={
-                <p className="!text-primary cursor-pointer font-peyda">
-                  مشاهده پاسخ ها
-                </p>
-              }
-            >
-              <img
-                src={infoIcon}
-                alt=""
-                className="w-[20px] cursor-pointer"
-                onClick={() => {
-                  selectedCommentData.current = comment.id;
-                  onOpenRepliesModal();
-                }}
-              />
-            </MainTooltip>
+            {comment.replyCount ? (
+              <MainTooltip
+                content={
+                  <p className="!text-primary cursor-pointer font-peyda">
+                    مشاهده پاسخ ها
+                  </p>
+                }
+              >
+                <img
+                  src={infoIcon}
+                  alt=""
+                  className="w-[20px] cursor-pointer"
+                  onClick={() => {
+                    selectedCommentData.current = comment.id;
+                    onOpenRepliesModal();
+                  }}
+                />
+              </MainTooltip>
+            ) : null}
           </div>
         );
       case "likeCount":

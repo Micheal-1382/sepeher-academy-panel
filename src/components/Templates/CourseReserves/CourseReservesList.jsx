@@ -1,14 +1,11 @@
 import React, { useCallback, useRef } from "react";
 import {
   useCourseReserveApi,
-  useDeleteCourseReserveApi,
 } from "../../../hooks/api/useCoursesApi";
 import { convertToPersianDate } from "../../../utils/convertToPersianDate";
 import { Chip, Image, useDisclosure } from "@nextui-org/react";
 import MainTable from "../../Modules/Table/MainTable";
 import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
-import eyeIcon from "../../../assets/icons/outlined/eye.svg";
-import editIcon from "../../../assets/icons/outlined/edit.svg";
 import trashIcon from "../../../assets/icons/outlined/trash.svg";
 import MainModal from "../../Modules/Modal/MainModal";
 import { DeleteBody } from "../../Modules/Modal/Content/DeleteCourseReserveContent";
@@ -58,12 +55,6 @@ export default function CourseReservesList() {
       case "actions":
         return (
           <div className="relative flex !items-center gap-2">
-            <MainTooltip content="جزئیات">
-              <Image alt="" src={eyeIcon} width={20} />
-            </MainTooltip>
-            <MainTooltip content="ویرایش">
-              <Image alt="" src={editIcon} width={20} />
-            </MainTooltip>
             {!course["accept"] && (
               <MainTooltip color="danger" content="حذف">
                 <Image

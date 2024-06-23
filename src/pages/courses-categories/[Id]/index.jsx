@@ -75,7 +75,7 @@ export default function CategoryDetailsPage() {
         {...data?.courseGroupDto}
         isLoading={isLoading}
       />
-      <h3 className="mb-4 text-2xl font-peyda mt-8">لیست کاربران دوره</h3>
+      <h3 className="mb-4 text-2xl font-peyda mt-8">دانشجویان دسته بندی</h3>
       <MainTable
         data={data?.courseUserListDto ?? []}
         columns={columns}

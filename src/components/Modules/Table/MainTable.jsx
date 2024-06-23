@@ -35,7 +35,7 @@ export default function MainTable({
     if (queryParams?.RowsOfPage) {
       setRowsOfPage(queryParams?.RowsOfPage);
     }
-  }, []);
+  }, [queryParams]);
 
   const pages = useMemo(() => {
     return totalCount ? Math.ceil(totalCount / rowsOfPage) : 0;
