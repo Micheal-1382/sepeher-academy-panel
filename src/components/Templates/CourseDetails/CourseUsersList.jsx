@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { getQueryParams } from "../../../utils/getQueryParams";
 import { useGetCourseUserListApi } from "../../../hooks/api/useCoursesApi";
@@ -7,7 +7,11 @@ import { sortTypeItems } from "../../../constants/sortTypeItems";
 import courseSortingColItems from "../../../constants/courseSortingColItems";
 import { convertToPersianDate } from "../../../utils/convertToPersianDate";
 import MainTable from "../../Modules/Table/MainTable";
-import { Chip } from "@nextui-org/react";
+import { Chip, useDisclosure } from "@nextui-org/react";
+import MainTooltip from "../../Modules/MainTooltip/MainTooltip";
+import markIcon from "../../../assets/icons/outlined/mark.svg";
+import MainModal from "../../Modules/Modal/MainModal";
+import AddToCourseStudentContent from "../../Modules/Modal/Content/AddToCourseStudentContent";
 
 const columns = [
   { name: "نام دانشجو", uid: "studentName" },
@@ -22,6 +26,15 @@ export default function CourseUsersList() {
   const params = useParams();
 
   const queryParams = getQueryParams(search);
+
+  const selectedUserInfo = useRef();
+
+  const {
+    isOpen: isAcceptModalOpen,
+    onOpenChange: onOpenChangeAcceptModal,
+    onOpen: onOpenAcceptModal,
+    onClose: onCloseAcceptModal,
+  } = useDisclosure();
 
   const { data, isLoading } = useGetCourseUserListApi({
     ...queryParams,
@@ -38,12 +51,37 @@ export default function CourseUsersList() {
         return <p className="font-peyda">{cellValue}</p>;
       case "peymentDone":
         return (
-          <Chip
-            color={cellValue ? "success" : "danger"}
-            className="text-btnText font-peyda"
-          >
-            {cellValue ? "تکمیل شده" : "تکمیل نشده"}
-          </Chip>
+          <div className="flex items-center gap-1">
+            <Chip
+              color={cellValue ? "success" : "danger"}
+              className="text-btnText font-peyda"
+            >
+              {cellValue ? "تکمیل شده" : "تکمیل نشده"}
+            </Chip>
+            {!cellValue && (
+              <MainTooltip
+                content={
+                  <p className="!text-primary cursor-pointer font-peyda">
+                    تایید پرداخت هزینه دوره
+                  </p>
+                }
+              >
+                <img
+                  src={markIcon}
+                  alt=""
+                  className="w-[20px] cursor-pointer"
+                  onClick={() => {
+                    selectedUserInfo.current = {
+                      studentId: user.studentId,
+                      courseGroupId: user.courseGroupId,
+                      courseId: params.id,
+                    };
+                    onOpenAcceptModal();
+                  }}
+                />
+              </MainTooltip>
+            )}
+          </div>
         );
       case "isDelete":
         return (
@@ -82,6 +120,16 @@ export default function CourseUsersList() {
         renderCell={renderCell}
         isLoading={isLoading}
         totalCount={data?.length ?? 0}
+      />
+      <MainModal
+        isOpen={isAcceptModalOpen}
+        onOpenChange={onOpenChangeAcceptModal}
+        body={
+          <AddToCourseStudentContent
+            closeModal={onCloseAcceptModal}
+            payload={selectedUserInfo.current}
+          />
+        }
       />
     </div>
   );

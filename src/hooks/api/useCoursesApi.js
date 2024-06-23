@@ -9,14 +9,19 @@ import {
   courseReserveApi,
   courseReserveDetailsApi,
   courseStatusApi,
+  createCourseApi,
   deleteCourseApi,
   deleteCourseGroupApi,
   deleteCourseReserveApi,
+  getCourseGroupApi,
   getCourseUserListApi,
+  getCreateCourseApi,
   updateCourseGroupApi,
   updateCourseStatusApi,
 } from "../../services/coursesApi";
 import { toast } from "react-toastify";
+import { data } from "autoprefixer";
+import { sendReserveToCourseApi } from "../../services/commentApi";
 
 export const useCourseListApi = (params) => {
   return useQuery({
@@ -176,5 +181,50 @@ export const useGetCourseUserListApi = (params) => {
   return useQuery({
     queryKey: ["CourseUserList", params],
     queryFn: () => getCourseUserListApi(params).then((data) => data.data),
+  });
+};
+
+export const useGetCreateCourseApi = () => {
+  return useQuery({
+    queryKey: ["GetCreateCourse"],
+    queryFn: () => getCreateCourseApi().then((data) => data.data),
+  });
+};
+
+export const useCreateCourseApi = (reset) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload) => createCourseApi(payload),
+    onSuccess: () => {
+      toast.success("دوره موردنظر با موفقیت ثبت شد");
+      reset();
+      queryClient.invalidateQueries({
+        queryKey: ["courseList"],
+      });
+    },
+  });
+};
+
+export const useGetCourseGroupApi = (params) => {
+  return useQuery({
+    queryKey: ["MainCourseCourseGroup", params],
+    queryFn: () => getCourseGroupApi(params).then((data) => data.data),
+    enabled: Boolean(params.TeacherId) && Boolean(params.CourseId),
+  });
+};
+
+export const useSendReserveToCourseApi = (closeModal) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload) => sendReserveToCourseApi(payload),
+    onSuccess: () => {
+      toast.success("دوره موردنظر برای دانشجو ثبت شد");
+      closeModal();
+      queryClient.invalidateQueries({
+        queryKey: ["CourseUserList"],
+      });
+    },
   });
 };

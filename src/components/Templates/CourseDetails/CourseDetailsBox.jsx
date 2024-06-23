@@ -22,14 +22,14 @@ export default function CourseDetailsBox({
           <p className="!text-primary">{title}</p>
         )}
       </div>
-      <div className="flex items-center gap-2">
+      {/* <div className="flex items-center gap-2">
         <p>توضیحات:</p>
         {isLoading ? (
           <Skeleton className="rounded-md w-[100px] h-[25px]" />
         ) : (
           <p className="!text-primary">{describe}</p>
         )}
-      </div>
+      </div> */}
       <div className="flex items-center gap-2">
         <p>نام استاد:</p>
         {isLoading ? (

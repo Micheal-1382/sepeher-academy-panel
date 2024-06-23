@@ -88,3 +88,19 @@ export const courseStatusApi = () => {
 export const getCourseUserListApi = (params) => {
   return httpService.get(baseUrl + `CourseUser/GetCourseUserList`, { params });
 };
+
+export const getCreateCourseApi = () => {
+  return httpService.get(baseUrl + `Course/GetCreate`);
+};
+
+export const createCourseApi = (payload) => {
+  return httpService.post(baseUrl + `Course`, payload, {
+    headers: {
+      useMultipartForm: true,
+    },
+  });
+};
+
+export const getCourseGroupApi = (params) => {
+  return httpService.get(baseUrl + `CourseGroup/GetCourseGroup`, { params });
+};

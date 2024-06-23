@@ -29,3 +29,7 @@ export const deleteCourseCommentApi = (CourseCommandId) => {
     baseUrl + `Course/DeleteCourseComment?CourseCommandId=${CourseCommandId}`
   );
 };
+
+export const sendReserveToCourseApi = (payload) => {
+  return httpService.post(baseUrl + `CourseReserve/SendReserveToCourse`,payload);
+};

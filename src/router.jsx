@@ -17,6 +17,7 @@ import NewsDetailsPage from "./pages/news/[NewsId]";
 import AddNewsCategoryPage from "./pages/add-news-categories";
 import CourseReservesPage from "./pages/course-reserves";
 import CourseDetailsPage from "./pages/courses/[id]";
+import AddCoursePage from "./pages/add-course";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "courses",
         element: <CoursesPage />,
+      },
+      {
+        path: "add-course",
+        element: <AddCoursePage />,
       },
       {
         path: "course-categories",

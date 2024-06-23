@@ -56,7 +56,21 @@ export const UpdateBody = ({ userId, closeModal, action, actionLoading }) => {
   }, [data]);
 
   const submitFormHandler = (data) => {
-    action(data);
+    const {
+      year: birthYear,
+      month: birthMonth,
+      day: birthDayDate,
+    } = data.birthDay;
+    const {
+      year: insertYear,
+      month: insertMonth,
+      day: insertDay,
+    } = data.insertDate;
+
+    const birthDay = `${birthYear}-${birthMonth}-${birthDayDate}`;
+    const insertDate = `${insertYear}-${insertMonth}-${insertDay}`;
+
+    action({ ...data, birthDay, insertDate, id: userId });
   };
 
   const removeRoleHandler = (id, roles, onChange) => {
@@ -233,6 +247,7 @@ export const UpdateBody = ({ userId, closeModal, action, actionLoading }) => {
             <Controller
               control={control}
               name="birthDay"
+              defaultValue={null}
               render={({ field: { onChange, value } }) => (
                 <MainDatePicker
                   label={"تاریخ تولد"}

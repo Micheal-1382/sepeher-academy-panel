@@ -10,6 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@editorjs/checklist": "^1.6.0",
+    "@editorjs/delimiter": "^1.4.0",
+    "@editorjs/editorjs": "^2.29.1",
+    "@editorjs/header": "^2.8.1",
+    "@editorjs/image": "^2.9.0",
+    "@editorjs/inline-code": "^1.5.0",
+    "@editorjs/link": "^2.6.2",
+    "@editorjs/marker": "^1.4.0",
+    "@editorjs/nested-list": "^1.4.2",
+    "@editorjs/quote": "^2.6.0",
+    "@editorjs/warning": "^1.4.0",
     "@internationalized/date": "^3.5.4",
     "@nextui-org/react": "^2.4.1",
     "@tanstack/react-query": "^5.40.1",

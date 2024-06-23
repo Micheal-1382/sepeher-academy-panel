@@ -14,6 +14,14 @@ export const sidebarItems = () => {
           },
         },
         {
+          name: "افزودن دوره",
+          href: "add-course",
+          access: {
+            ADMIN: true,
+            TEACHER: true,
+          },
+        },
+        {
           name: "دانشجویان رزرو شده",
           href: "course-reserves",
           access: {
